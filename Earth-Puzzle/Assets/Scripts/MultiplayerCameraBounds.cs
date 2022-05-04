@@ -93,7 +93,8 @@ public class MultiplayerCameraBounds : MonoBehaviour
             nextPos.y = transform.position.y;
 
         Vector3 unused = Vector3.zero;
-        transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref unused, Time.deltaTime * camDampSpeed);
+        //transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref unused, Time.deltaTime * camDampSpeed);
+        transform.position = nextPos;
     }
 
     private void Zoom()
@@ -109,8 +110,6 @@ public class MultiplayerCameraBounds : MonoBehaviour
             if (dist > distance)
                 distance = dist;
         }
-
-        Debug.Log(distance / zoomStrength);
 
         Camera.main.orthographicSize = Mathf.Lerp(minZoom, maxZoom, distance / zoomStrength);
         UpdateValues();
@@ -171,18 +170,6 @@ public class MultiplayerCameraBounds : MonoBehaviour
         maxY = corners[region].topRight.position.y - cameraSize.y;
         minX = corners[region].bottomLeft.position.x + cameraSize.x;
         minY = corners[region].bottomLeft.position.y + cameraSize.y;
-    }
-
-    private Vector2 VirtualUpdateValues(float size, out float vMinX, out float vMaxX, out float vMinY, out float vMaxY)
-    {
-        Vector2 virtualCameraSize = new Vector2(size * (Screen.width / Screen.height), size);
-
-        vMinX = corners[region].bottomLeft.position.x + virtualCameraSize.x;
-        vMaxX = corners[region].topRight.position.x - virtualCameraSize.x;
-        vMinY = corners[region].bottomLeft.position.y + virtualCameraSize.y;
-        vMaxY = corners[region].topRight.position.y - virtualCameraSize.y;
-
-        return virtualCameraSize;
     }
 
     private Vector2 AverageCenter()

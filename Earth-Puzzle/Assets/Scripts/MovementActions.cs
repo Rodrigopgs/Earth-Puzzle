@@ -57,7 +57,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""WSAD"",
+                    ""name"": ""AD"",
                     ""id"": ""cc18360c-1875-4c7f-8708-7ed49fa219a4"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -121,7 +121,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                     ""name"": ""Movement"",
                     ""type"": ""Value"",
                     ""id"": ""0f6650d8-e0d6-460c-bf84-ebcd27dc06a1"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -147,7 +147,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""ARROWS"",
+                    ""name"": ""JL"",
                     ""id"": ""afc2606e-a7d4-4322-9315-5eb231d6e598"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -160,7 +160,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Negative"",
                     ""id"": ""10e44e6a-21da-4244-ac37-e6fe10322fa1"",
-                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -171,7 +171,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Positive"",
                     ""id"": ""7382a944-0a7c-4225-b0fb-5f873bf4a0f2"",
-                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -182,7 +182,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9516c766-9402-41d1-9e39-cb7e7e18b94c"",
-                    ""path"": ""<Keyboard>/upArrow"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -193,7 +193,7 @@ public partial class @MovementActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""44357beb-ffdc-4ddc-8d7c-29da67330e35"",
-                    ""path"": ""<Keyboard>/downArrow"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

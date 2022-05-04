@@ -3,15 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Interact
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Jumpable
   - Water
   - UI
-  - 
+  - DropPlatform
   - 
   - 
   - 
