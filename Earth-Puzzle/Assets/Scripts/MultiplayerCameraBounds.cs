@@ -6,7 +6,7 @@ using UnityEngine;
 /// A class that allows the camera to be clamped inside multiple areas.
 /// </summary>
 [RequireComponent(typeof(Camera))]
-public class CameraBounds : MonoBehaviour
+public class MultiplayerCameraBounds : MonoBehaviour
 {
     /// <summary>
     /// A property that can be used by the BasicInteraction events list.
@@ -26,14 +26,27 @@ public class CameraBounds : MonoBehaviour
         get => region;
     }
 
-    [SerializeField, Tooltip("Which corners to use from the Corners list to clamp the camera's position")]
+    [SerializeField, Tooltip("Which corners to use from the Corners list to clamp the camera's position. Setting this through the inspector will NOT change the region during gameplay.")]
     private int region = 0;
 
-    [Tooltip("A list of corners that the camera will use to clamp it's position based off its region")]
+    [Space]
+
+    [Tooltip("How strongly the camera will zoom in/out to keep the objects in frame.")]
+    public float zoomStrength = 10;
+    [Tooltip("The maximum the camera can zoom in.")]
+    public float minZoom = 1f;
+    [Tooltip("The maximum the camera can zoom out.")]
+    public float maxZoom = 8f;
+    [Tooltip("The camera's dampening speed.")]
+    public float camDampSpeed = 2.5f;
+
+    [Space]
+
+    [Tooltip("A list of corners that the camera will use to clamp it's position based off its region.")]
     public List<BoundCorners> corners;
 
     [Tooltip("The Transform to follow")]
-    public Transform objectToTrack;
+    public Transform[] objectsToTrack;
 
 
     float maxX;
@@ -42,6 +55,8 @@ public class CameraBounds : MonoBehaviour
     float minY;
 
     float lastSize;
+    float initSize;
+    bool zoomed;
 
     Vector2 cameraSize;
 
@@ -51,15 +66,23 @@ public class CameraBounds : MonoBehaviour
 
         lastSize = cameraSize.x;
 
+        initSize = Camera.main.orthographicSize;
+
         Region = region;
     }
 
     void LateUpdate()
     {
-        if (objectToTrack == null)
-            return;
+        Zoom();
 
-        Vector3 nextPos = new Vector3(objectToTrack.position.x, objectToTrack.position.y, transform.position.z);
+        Clamp();
+    }
+
+    private void Clamp()
+    {
+        Vector2 averagePos = AverageCenter();
+
+        Vector3 nextPos = new Vector3(averagePos.x, averagePos.y, transform.position.z);
 
         nextPos.x = Mathf.Clamp(nextPos.x, minX, maxX);
         if (nextPos.x < minX || nextPos.x > maxX)
@@ -69,13 +92,35 @@ public class CameraBounds : MonoBehaviour
         if (nextPos.y < minY || nextPos.y > maxY)
             nextPos.y = transform.position.y;
 
-        transform.position = nextPos;
+        Vector3 unused = Vector3.zero;
+        transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref unused, Time.deltaTime * camDampSpeed);
+    }
+
+    private void Zoom()
+    {
+
+        float distance = float.NegativeInfinity;
+        for (int i = 0; i < objectsToTrack.Length; i++)
+        {
+            if (i + 1 >= objectsToTrack.Length)
+                break;
+
+            float dist = Vector2.Distance(objectsToTrack[i].position, objectsToTrack[i + 1].position);
+            if (dist > distance)
+                distance = dist;
+        }
+
+        Debug.Log(distance / zoomStrength);
+
+        Camera.main.orthographicSize = Mathf.Lerp(minZoom, maxZoom, distance / zoomStrength);
+        UpdateValues();
+
     }
 
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
-        if (corners.Count <= 0)
+        if (corners == null || corners.Count <= 0)
             return;
 
         Gizmos.color = Color.yellow;
@@ -114,31 +159,44 @@ public class CameraBounds : MonoBehaviour
     }
 #endif
 
-    void FixedUpdate()
-    {
-        float size = cameraSize.y * Screen.width / Screen.height;
-
-        if (cameraSize.y != Camera.main.orthographicSize || lastSize != size)
-        {
-            UpdateValues();
-
-            Region = region;
-        }
-        lastSize = cameraSize.x;
-    }
-
     /// <summary>
     /// Updates the size of the camera for clamping purposes
     /// </summary>
     private void UpdateValues()
     {
         cameraSize.y = Camera.main.orthographicSize;
-        cameraSize.x = cameraSize.y * Screen.width / Screen.height;
+        cameraSize.x = cameraSize.y * (Screen.width / Screen.height);
 
         maxX = corners[region].topRight.position.x - cameraSize.x;
         maxY = corners[region].topRight.position.y - cameraSize.y;
         minX = corners[region].bottomLeft.position.x + cameraSize.x;
         minY = corners[region].bottomLeft.position.y + cameraSize.y;
+    }
+
+    private Vector2 VirtualUpdateValues(float size, out float vMinX, out float vMaxX, out float vMinY, out float vMaxY)
+    {
+        Vector2 virtualCameraSize = new Vector2(size * (Screen.width / Screen.height), size);
+
+        vMinX = corners[region].bottomLeft.position.x + virtualCameraSize.x;
+        vMaxX = corners[region].topRight.position.x - virtualCameraSize.x;
+        vMinY = corners[region].bottomLeft.position.y + virtualCameraSize.y;
+        vMaxY = corners[region].topRight.position.y - virtualCameraSize.y;
+
+        return virtualCameraSize;
+    }
+
+    private Vector2 AverageCenter()
+    {
+        Vector2 result = Vector2.zero;
+
+        for (int i = 0; i < objectsToTrack.Length; i++)
+        {
+            result.x += objectsToTrack[i].position.x;
+            result.y += objectsToTrack[i].position.y;
+        }
+
+        result /= objectsToTrack.Length;
+        return result;
     }
 
     /// <summary>
@@ -159,4 +217,3 @@ public class CameraBounds : MonoBehaviour
         }
     }
 }
-
