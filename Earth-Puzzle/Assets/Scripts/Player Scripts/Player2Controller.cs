@@ -3,15 +3,15 @@ using UnityEngine.InputSystem;
 
 public class Player2Controller : PlayerController
 {
-    MovementActions movementActions;
-    MovementActions.Player2Actions player2Actions;
+    TwoPlayerActions movementActions;
+    TwoPlayerActions.Player2Actions player2Actions;
     InputAction side;
     InputAction jump;
     InputAction drop;
 
     protected override void Awake()
     {
-        movementActions = new MovementActions();
+        movementActions = new TwoPlayerActions();
         player2Actions = movementActions.Player2;
         side = player2Actions.Movement;
         jump = player2Actions.Jump;
