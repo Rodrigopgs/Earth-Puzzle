@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player1Controller : PlayerController
+public class Player1Controller : OldPlayerController
 {
     TwoPlayerActions movementActions;
     TwoPlayerActions.Player1Actions player1Actions;

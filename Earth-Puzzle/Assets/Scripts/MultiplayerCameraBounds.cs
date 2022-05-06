@@ -39,6 +39,8 @@ public class MultiplayerCameraBounds : MonoBehaviour
     public float maxZoom = 8f;
     [Tooltip("The camera's dampening speed.")]
     public float camDampSpeed = 2.5f;
+    [Tooltip("How far the tracked objects need to be from each other for the camera to resize")]
+    public float distanceThreshold = 5f;
 
     [Space]
 
@@ -93,8 +95,8 @@ public class MultiplayerCameraBounds : MonoBehaviour
             nextPos.y = transform.position.y;
 
         Vector3 unused = Vector3.zero;
-        //transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref unused, Time.deltaTime * camDampSpeed);
-        transform.position = nextPos;
+        transform.position = Vector3.SmoothDamp(transform.position, nextPos, ref unused, Time.deltaTime * 1);
+        //transform.position = nextPos;
     }
 
     private void Zoom()

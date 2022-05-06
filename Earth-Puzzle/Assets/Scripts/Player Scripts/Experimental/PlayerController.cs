@@ -1,39 +1,58 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player2Controller : OldPlayerController
+[RequireComponent(typeof(Rigidbody2D))]
+public class PlayerController : MonoBehaviour
 {
-    TwoPlayerActions movementActions;
-    TwoPlayerActions.Player2Actions player2Actions;
-    InputAction side;
-    InputAction jump;
-    InputAction drop;
+    public Vector2 OutsideForce { get { return incommingForce; } set { incommingForce = value; } }
+    public Vector2 AdditiveForce { get { return addForce; } set { addForce = value; } }
 
-    protected override void Awake()
-    {
-        movementActions = new TwoPlayerActions();
-        player2Actions = movementActions.Player2;
-        side = player2Actions.Movement;
-        jump = player2Actions.Jump;
-        drop = player2Actions.Down;
-    }
+    protected Rigidbody2D rb2d;
 
-    protected override void OnEnable()
-    {
-        movementActions.Enable();
-        player2Actions.Enable();
-        side.Enable();
-        jump.Enable();
-        drop.Enable();
+    [Header("Movement")]
+    public float moveSpeed = 16f;
+    [Tooltip("This should be much lower than the move speed")]
+    public float maxSpeed = 16f;
+    [Tooltip("These are the object layers the player can jump off of")]
+    public LayerMask jumpMask;
 
-        side.performed += OnSide;
-        side.canceled += CancelSide;
-        jump.performed += OnJump;
-        drop.performed += OnDrop;
+    protected float moveDirection;
 
-    }
+    [Header("Jumping")]
+    public float jumpStrength = 8f;
+    [Tooltip("How far the player needs to be from the ground to jump")]
+    public float raycastDistance = 0.515f;
+    [Min(1f)]
+    [Tooltip("How much the movement speed should be divided by while in the air")]
+    public float airMovementDivisor = 6f;
+    [Tooltip("The rigid body drag while in the air")]
+    public float airDrag = 0.6f;
+    [Tooltip("The gravity scale of the rigid body while in the air")]
+    public float airGravity = 1.5f;
+    [Tooltip("How long in seconds should a jump be queued for if the jump button is pressed while in the air")]
+    public float jumpQueueTime = 0.3f;
+    [Tooltip("How long in seconds should the jump button work after falling off a ledge")]
+    public float cyoteTime = 0.12f;
 
-    protected override void Start()
+    protected bool onGround;
+    protected bool jumpThisFrame;
+    protected bool cyote;
+    protected bool groundLastUpdate;
+    protected bool jumping;
+
+    protected float drag;
+    protected float jumpQueueWaitTime;
+    protected float cyoteWaitTime;
+    protected float jumpWaitTime;
+    protected float startingGravityScale;
+
+    protected Vector3 startingScale;
+    protected Vector2 incommingForce = Vector2.zero;
+    protected Vector2 addForce = Vector2.zero;
+
+
+
+    void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
 
@@ -43,21 +62,24 @@ public class Player2Controller : OldPlayerController
         startingScale = transform.localScale;
     }
 
-    protected override void OnSide(InputAction.CallbackContext cb)
+    public void OnMovement(InputAction.CallbackContext cb)
     {
-        moveDirection = cb.ReadValue<float>();
+        if (cb.performed)
+        {
+            moveDirection = cb.ReadValue<float>();
 
-        if (moveDirection > 0)
-            transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);
-        else
-            transform.localScale = new Vector3(-startingScale.x, startingScale.y, startingScale.z);
+            if (moveDirection > 0)
+                transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);
+            else
+                transform.localScale = new Vector3(-startingScale.x, startingScale.y, startingScale.z);
+        }
+        else if (cb.canceled)
+        {
+            moveDirection = 0f;
+        }
     }
 
-    protected override void CancelSide(InputAction.CallbackContext cb)
-    {
-        moveDirection = 0f;
-    }
-    protected override void OnJump(InputAction.CallbackContext cb)
+    public void OnJump(InputAction.CallbackContext cb)
     {
         if (cb.ReadValue<float>() >= 0.5f)
         {
@@ -65,12 +87,12 @@ public class Player2Controller : OldPlayerController
             jumpQueueWaitTime = 0f;
         }
     }
-    protected override void OnDrop(InputAction.CallbackContext cb)
+    public void OnDown(InputAction.CallbackContext cb)
     {
 
     }
 
-    protected override void Update()
+    void Update()
     {
         if (jumpWaitTime >= 0.2f)
         {
@@ -126,7 +148,7 @@ public class Player2Controller : OldPlayerController
         groundLastUpdate = onGround;
     }
 
-    protected override void FixedUpdate()
+    void FixedUpdate()
     {
         Vector2 forceVector = Vector2.zero;
         Vector2 absoluteVector = rb2d.velocity;
@@ -165,16 +187,9 @@ public class Player2Controller : OldPlayerController
         }
         else
         {
-            rb2d.MovePosition((Vector2)transform.position + additiveForce);
-            additiveForce = Vector2.zero;
+            rb2d.MovePosition((Vector2)transform.position + AdditiveForce);
+            AdditiveForce = Vector2.zero;
 
         }
-    }
-    protected override void OnDestroy()
-    {
-        side.performed -= OnSide;
-        side.canceled -= CancelSide;
-        jump.performed -= OnJump;
-        drop.performed -= OnDrop;
     }
 }
