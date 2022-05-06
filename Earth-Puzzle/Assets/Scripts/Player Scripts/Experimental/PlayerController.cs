@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("These are the object layers the player can jump off of")]
     public LayerMask jumpMask;
 
-    protected float moveDirection;
+    protected float moveDirection = 0f;
 
     [Header("Jumping")]
     public float jumpStrength = 8f;

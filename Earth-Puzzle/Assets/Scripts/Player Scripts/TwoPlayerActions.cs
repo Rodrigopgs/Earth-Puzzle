@@ -176,6 +176,15 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""d784632e-2afc-42e0-a795-565286635d20"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -233,6 +242,17 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73d0015a-1c41-4501-9bfd-3d9683b82a01"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -262,6 +282,15 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""name"": ""Down"",
                     ""type"": ""Button"",
                     ""id"": ""ceefaa1a-61b9-4295-91e4-c6bfd856fc92"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""b3da0d54-abdf-4b49-89a2-cd1f1eab51a2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -323,6 +352,17 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b97472f-3dc4-4a8c-a9b3-aa5a2f87d45d"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -367,11 +407,13 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         m_Player1_Movement = m_Player1.FindAction("Movement", throwIfNotFound: true);
         m_Player1_Jump = m_Player1.FindAction("Jump", throwIfNotFound: true);
         m_Player1_Down = m_Player1.FindAction("Down", throwIfNotFound: true);
+        m_Player1_Interact = m_Player1.FindAction("Interact", throwIfNotFound: true);
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Movement = m_Player2.FindAction("Movement", throwIfNotFound: true);
         m_Player2_Jump = m_Player2.FindAction("Jump", throwIfNotFound: true);
         m_Player2_Down = m_Player2.FindAction("Down", throwIfNotFound: true);
+        m_Player2_Interact = m_Player2.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -483,6 +525,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player1_Movement;
     private readonly InputAction m_Player1_Jump;
     private readonly InputAction m_Player1_Down;
+    private readonly InputAction m_Player1_Interact;
     public struct Player1Actions
     {
         private @TwoPlayerActions m_Wrapper;
@@ -490,6 +533,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player1_Movement;
         public InputAction @Jump => m_Wrapper.m_Player1_Jump;
         public InputAction @Down => m_Wrapper.m_Player1_Down;
+        public InputAction @Interact => m_Wrapper.m_Player1_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -508,6 +552,9 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Down.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
                 @Down.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
                 @Down.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
+                @Interact.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_Player1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -521,6 +568,9 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Down.started += instance.OnDown;
                 @Down.performed += instance.OnDown;
                 @Down.canceled += instance.OnDown;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -532,6 +582,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player2_Movement;
     private readonly InputAction m_Player2_Jump;
     private readonly InputAction m_Player2_Down;
+    private readonly InputAction m_Player2_Interact;
     public struct Player2Actions
     {
         private @TwoPlayerActions m_Wrapper;
@@ -539,6 +590,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player2_Movement;
         public InputAction @Jump => m_Wrapper.m_Player2_Jump;
         public InputAction @Down => m_Wrapper.m_Player2_Down;
+        public InputAction @Interact => m_Wrapper.m_Player2_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -557,6 +609,9 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Down.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnDown;
                 @Down.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnDown;
                 @Down.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnDown;
+                @Interact.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_Player2ActionsCallbackInterface = instance;
             if (instance != null)
@@ -570,6 +625,9 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Down.started += instance.OnDown;
                 @Down.performed += instance.OnDown;
                 @Down.canceled += instance.OnDown;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -603,11 +661,13 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IPlayer2Actions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

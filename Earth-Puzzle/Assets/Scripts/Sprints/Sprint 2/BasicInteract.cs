@@ -13,6 +13,6 @@ public class BasicInteract : Interactable
     [Tooltip("The events that will be invoked when the object is interacted with")]
     public UnityEvent events;
 
-    public override void OnInteract() => events.Invoke();
+    public override void OnInteract(int playerNumber) => events.Invoke();
 
 }
