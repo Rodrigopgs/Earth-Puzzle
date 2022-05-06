@@ -11,7 +11,7 @@ public abstract class Interactable : MonoBehaviour
     /// <summary>
     /// The method that is called when this object is interacted with. This method must be overridden.
     /// </summary>
-    public abstract void OnInteract();
+    public abstract void OnInteract(int playerNumber);
     /// <summary>
     /// The method that is called to determine if this object can be interacted with. This method can be overridden.
     /// </summary>

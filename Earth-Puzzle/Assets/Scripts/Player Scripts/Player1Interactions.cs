@@ -10,15 +10,12 @@ using UnityEngine.InputSystem;
 /// For the object to appear with a white outline, its material must be set to the '2d_lit_outline' or '2d_unlit_outline' material.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class PlayerInteractions : MonoBehaviour
+public class Player1Interactions : MonoBehaviour
 {
-    /// <summary>
-    /// The current instance of PlayerInteractions
-    /// </summary>
-    public static PlayerInteractions Instance { get; private set; }
+    public static Player1Interactions Instance { get; private set; }
 
-    Inputs inputs;
-    Inputs.DefaultActions defaultActions;
+    TwoPlayerActions inputs;
+    TwoPlayerActions.Player1Actions defaultActions;
 
     InputAction interact;
     List<Interactable> interactables = new List<Interactable>();
@@ -28,8 +25,8 @@ public class PlayerInteractions : MonoBehaviour
     {
         Instance = this;
 
-        inputs = new Inputs();
-        defaultActions = inputs.Default;
+        inputs = new TwoPlayerActions();
+        defaultActions = inputs.Player1;
         interact = defaultActions.Interact;
     }
 
@@ -48,7 +45,7 @@ public class PlayerInteractions : MonoBehaviour
             return;
 
         if (outlined != null)
-            outlined.OnInteract();
+            outlined.OnInteract(1);
     }
 
     private void Update()

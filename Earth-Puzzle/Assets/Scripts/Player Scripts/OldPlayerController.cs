@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class PlayerController : MonoBehaviour
+public abstract class OldPlayerController : MonoBehaviour
 {
     public Vector2 outsideForce { get { return incommingForce; } set { incommingForce = value; } }
     public Vector2 additiveForce { get { return addForce; } set { addForce = value; } }
