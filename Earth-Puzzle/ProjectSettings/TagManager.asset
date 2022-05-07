@@ -7,6 +7,7 @@ TagManager:
   - Interact
   - Player1
   - Player2
+  - Activation Reciever
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - Jumpable
   - Water
   - UI
-  - DropPlatform
-  - 
+  - Drop Platform
+  - Ignore Laser
   - 
   - 
   - 
