@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -70,56 +67,59 @@ public class Laser : MonoBehaviour
 
     private void ActiveLaser(RaycastHit2D rh2d)
     {
-        actRec = rh2d.collider.GetComponent<ActivationReciever>();
+        var temp = rh2d.collider.GetComponent<ActivationReciever>();
+
+        if (actRec != null && actRec != temp)
+            actRec.Deactivate();
+
+        actRec = temp;
         if (actRec != null && lineRenderer.enabled)
             actRec.Activate();
 
         if (decRec != null)
-        {
             decRec.Heal();
-            decRec = null;
-        }
+        decRec = null;
         if (stsRec != null)
-        {
             stsRec.Resume();
-            stsRec = null;
-        }
+        stsRec = null;
     }
 
     private void DestroyLaser(RaycastHit2D rh2d)
     {
-        decRec = rh2d.collider.GetComponent<DestructionReciever>();
+        var temp = rh2d.collider.GetComponent<DestructionReciever>();
+
+        if (decRec != null && decRec != temp)
+            decRec.Heal();
+
+        decRec = temp;
         if (decRec != null && lineRenderer.enabled)
             decRec.Destroy();
 
         if (actRec != null)
-        {
             actRec.Deactivate();
-            actRec = null;
-        }
+        actRec = null;
         if (stsRec != null)
-        {
             stsRec.Resume();
-            stsRec = null;
-        }
+        stsRec = null;
     }
 
     private void StasisLaser(RaycastHit2D rh2d)
     {
-        stsRec = rh2d.collider.GetComponent<StasisReciever>();
+        var temp = rh2d.collider.GetComponent<StasisReciever>();
+
+        if (stsRec != null && stsRec != temp)
+            stsRec.Resume();
+
+        stsRec = temp;
         if (stsRec != null && lineRenderer.enabled)
             stsRec.Pause();
 
         if (actRec != null)
-        {
             actRec.Deactivate();
-            actRec = null;
-        }
+        actRec = null;
         if (decRec != null)
-        {
             decRec.Heal();
-            decRec = null;
-        }
+        decRec = null;
     }
 
     public void OnClick(InputAction.CallbackContext cb)
@@ -168,6 +168,21 @@ public class Laser : MonoBehaviour
         }
     }
 
+    private void ResetAll()
+    {
+        if (actRec != null)
+            actRec.Deactivate();
+        actRec = null;
+
+        if (decRec != null)
+            decRec.Heal();
+        decRec = null;
+
+        if (stsRec != null)
+            stsRec.Resume();
+        stsRec = null;
+    }
+
     private void Update()
     {
         UpdateLine();
@@ -201,32 +216,12 @@ public class Laser : MonoBehaviour
             }
             else
             {
-                if (actRec != null)
-                    actRec.Deactivate();
-                actRec = null;
-
-                if (decRec != null)
-                    decRec.Heal();
-                decRec = null;
-
-                if (stsRec != null)
-                    stsRec.Resume();
-                stsRec = null;
+                ResetAll();
             }
         }
         else
         {
-            if (actRec != null)
-                actRec.Deactivate();
-            actRec = null;
-
-            if (decRec != null)
-                decRec.Heal();
-            decRec = null;
-
-            if (stsRec != null)
-                stsRec.Resume();
-            stsRec = null;
+            ResetAll();
 
             hitPos = (Vector2)transform.position + direction * 50;
         }

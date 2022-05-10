@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DestructionReciever : MonoBehaviour
 {
@@ -14,12 +10,12 @@ public class DestructionReciever : MonoBehaviour
     bool destroying;
     float time;
 
-    public void Destroy()
+    public virtual void Destroy()
     {
         destroying = true;
     }
 
-    public void Heal()
+    public virtual void Heal()
     {
         destroying = false;
     }

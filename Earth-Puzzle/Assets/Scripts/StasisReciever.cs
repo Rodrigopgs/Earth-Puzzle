@@ -1,21 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
-using UnityEngine.Events;
 
+
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class StasisReciever : MonoBehaviour
 {
-    public UnityEvent activateEvents;
-    public UnityEvent deactivateEvents;
 
-    public void Pause()
+    Rigidbody2D rb2d;
+    RigidbodyConstraints2D constraints;
+
+    private void Start()
     {
-
+        rb2d = GetComponent<Rigidbody2D>();
+        constraints = rb2d.constraints;
     }
 
-    public void Resume()
+    public virtual void Pause()
     {
+        rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
 
+    public virtual void Resume()
+    {
+        rb2d.constraints = constraints;
     }
 }
