@@ -54,8 +54,13 @@ public class Lasertest : MonoBehaviour
         Vector3[] linePoss = new Vector3[] { new Vector3(transform.position.x, transform.position.y), new Vector3(hitPos.x, hitPos.y) };
 
         lineRenderer.SetPositions(linePoss);
+        //particles position
         startVFX.transform.position = new Vector2(transform.position.x, transform.position.y);
         endVFX.transform.position = new Vector2(hitPos.x, hitPos.y);
+        float angle = Mathf.Atan2(mousePos.y - transform.position.y, mousePos.x - transform.position.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        startVFX.transform.rotation = targetRotation;
+
     }
 
     public void OnClick(InputAction.CallbackContext cb)
@@ -65,15 +70,20 @@ public class Lasertest : MonoBehaviour
 
         if (cb.started)
             lineRenderer.enabled = true;
+        //particles on
         for (int i = 0; i < particles.Count; i++)
             particles[i].Play();
 
         if (cb.canceled)
         {
             lineRenderer.enabled = false;
+            //particles off
+            for (int i = 0; i < particles.Count; i++)
+                particles[i].Clear();
+
             for (int i = 0; i < particles.Count; i++)
                 particles[i].Stop();
-
+   
             if (actRec != null)
                 actRec.Deactivate();
         }
@@ -84,6 +94,7 @@ public class Lasertest : MonoBehaviour
         if (actRec != null && lineRenderer.enabled)
             actRec.Activate();
     }
+    //particles list to activate/deactivat all at once
     void FillVFXlist()
     {
         for (int i=0; i <startVFX.transform.childCount; i++)
