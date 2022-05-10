@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7277649418608534602}
   m_Layer: 0
   m_Name: Activator
-  m_TagString: Activation Reciever
+  m_TagString: Laser Reciever
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
