@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(Collider2D))]
 public class Inspectable : Interactable
 {
     public const float FadeDistance = 0.05f;
@@ -11,6 +12,8 @@ public class Inspectable : Interactable
     public float lifetime = 4f;
     [Min(float.Epsilon), Tooltip("How long the text will take to appear, in seconds.")]
     public float fadeTime = 0.25f;
+    [Tooltip("The layer the text will appear on.")]
+    public int sortingLayer = 1000000000;
     [Tooltip("The offset of where the text will appear.")]
     public Vector2 offset = Vector2.zero;
     [Tooltip("How big the text box will be.")]
@@ -39,6 +42,7 @@ public class Inspectable : Interactable
         tmp.fontSizeMin = maxFontSize;
         tmp.sortingOrder = 1;
         tmp.color = color;
+        tmp.sortingLayerID = sortingLayer;
 
         tmp.text = text;
 
