@@ -407,6 +407,15 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Open"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d663dd0-cf41-4e35-9210-fabcef8e2378"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -451,6 +460,17 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Player2"",
                     ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""413b738a-f293-44e4-8fa9-4d94e2a2c3f0"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""Open"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -509,6 +529,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Mouse = m_Mouse.FindAction("Mouse", throwIfNotFound: true);
         m_Mouse_Click = m_Mouse.FindAction("Click", throwIfNotFound: true);
+        m_Mouse_Open = m_Mouse.FindAction("Open", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -741,12 +762,14 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
     private IMouseActions m_MouseActionsCallbackInterface;
     private readonly InputAction m_Mouse_Mouse;
     private readonly InputAction m_Mouse_Click;
+    private readonly InputAction m_Mouse_Open;
     public struct MouseActions
     {
         private @TwoPlayerActions m_Wrapper;
         public MouseActions(@TwoPlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Mouse => m_Wrapper.m_Mouse_Mouse;
         public InputAction @Click => m_Wrapper.m_Mouse_Click;
+        public InputAction @Open => m_Wrapper.m_Mouse_Open;
         public InputActionMap Get() { return m_Wrapper.m_Mouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -762,6 +785,9 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Click.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnClick;
                 @Click.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnClick;
                 @Click.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnClick;
+                @Open.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnOpen;
+                @Open.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnOpen;
+                @Open.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnOpen;
             }
             m_Wrapper.m_MouseActionsCallbackInterface = instance;
             if (instance != null)
@@ -772,6 +798,9 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Click.started += instance.OnClick;
                 @Click.performed += instance.OnClick;
                 @Click.canceled += instance.OnClick;
+                @Open.started += instance.OnOpen;
+                @Open.performed += instance.OnOpen;
+                @Open.canceled += instance.OnOpen;
             }
         }
     }
@@ -819,5 +848,6 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
     {
         void OnMouse(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
+        void OnOpen(InputAction.CallbackContext context);
     }
 }

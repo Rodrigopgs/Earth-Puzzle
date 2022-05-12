@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour
             rb2d.AddForce(incommingForce, ForceMode2D.Impulse);
             incommingForce = Vector2.zero;
         }
-        else
+        else if (AdditiveForce != Vector2.zero)
         {
             rb2d.MovePosition((Vector2)transform.position + AdditiveForce);
             AdditiveForce = Vector2.zero;

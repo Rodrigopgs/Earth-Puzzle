@@ -163,7 +163,7 @@ public class Player1Controller : OldPlayerController
             rb2d.AddForce(incommingForce, ForceMode2D.Impulse);
             incommingForce = Vector2.zero;
         }
-        else
+        else if (additiveForce != Vector2.zero)
         {
             rb2d.MovePosition((Vector2)transform.position + additiveForce);
             additiveForce = Vector2.zero;

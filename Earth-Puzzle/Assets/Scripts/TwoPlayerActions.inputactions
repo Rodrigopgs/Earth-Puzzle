@@ -385,6 +385,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Open",
+                    "type": "Button",
+                    "id": "5d663dd0-cf41-4e35-9210-fabcef8e2378",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -429,6 +438,17 @@
                     "processors": "",
                     "groups": "Player2",
                     "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "413b738a-f293-44e4-8fa9-4d94e2a2c3f0",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player1",
+                    "action": "Open",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
