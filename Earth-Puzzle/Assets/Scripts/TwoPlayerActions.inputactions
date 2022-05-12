@@ -163,6 +163,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchLaser",
+                    "type": "Button",
+                    "id": "ad2f9ee1-fd8c-4ebc-b68c-7ae6fe5ca789",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -229,6 +238,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8bd01885-452d-4034-963e-6fbb8b4cd590",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player1",
+                    "action": "SwitchLaser",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

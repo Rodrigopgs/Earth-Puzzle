@@ -44,6 +44,9 @@ public class Laser : MonoBehaviour
 
     StasisReciever stsRec;
 
+    //UI
+    public LaserUI UI;
+
     private void Start()
     {
         lineRenderer.enabled = false;
@@ -237,4 +240,10 @@ public class Laser : MonoBehaviour
         Destruction,
         Stasis
     }
+}
+
+[System.Serializable]
+public class LaserUI
+{
+    public GameObject UI;
 }
