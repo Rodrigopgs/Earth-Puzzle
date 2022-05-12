@@ -43,6 +43,6 @@ Material:
     m_Floats:
     - _Heatrate: 4
     m_Colors:
-    - _Color: {r: 4, g: 0, b: 0, a: 1}
+    - _Color: {r: 22.363522, g: 0, b: 0, a: 1}
     - _nocolor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
