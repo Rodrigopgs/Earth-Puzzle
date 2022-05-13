@@ -52,6 +52,11 @@ public class Laser : MonoBehaviour
 
     private void Start()
     {
+        if (LaserTransfer.Instance == null)
+            new LaserTransfer(this);
+        else
+            LoadValues();
+
         lineRenderer.enabled = false;
 
         switch (laserType)
@@ -66,7 +71,6 @@ public class Laser : MonoBehaviour
                 lineRenderer.colorGradient = laserColors[2];
                 break;
         }
-
     }
 
     public void OnMouseChange(InputAction.CallbackContext cb) => mousePos = cb.ReadValue<Vector2>();
@@ -269,6 +273,18 @@ public class Laser : MonoBehaviour
         Destruction,
         Stasis
     }
+
+    public void LoadValues()
+    {
+        LaserType = LaserTransfer.Instance.laserType;
+        laserColors = LaserTransfer.Instance.laserColors;
+
+        for (int i = 0; i < LaserTransfer.Instance.unlocked.Length; i++)
+        {
+            if (LaserTransfer.Instance.unlocked[i])
+                Unlock(i);
+        }
+    }
 }
 
 [System.Serializable]
@@ -283,5 +299,4 @@ public class LaserUI
     {
         locked.SetActive(true);
     }
-
 }
