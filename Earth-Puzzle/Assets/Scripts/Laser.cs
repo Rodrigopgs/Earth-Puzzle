@@ -1,3 +1,5 @@
+using System.Net.Sockets;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +26,7 @@ public class Laser : MonoBehaviour
                     lineRenderer.colorGradient = laserColors[2];
                     break;
             }
+            laserType = value;
         }
     }
 
@@ -44,8 +47,16 @@ public class Laser : MonoBehaviour
 
     StasisReciever stsRec;
 
+    //UI
+    public LaserUI UI;
+
     private void Start()
     {
+        if (LaserTransfer.Instance == null)
+            new LaserTransfer(this);
+        else
+            LoadValues();
+
         lineRenderer.enabled = false;
 
         switch (laserType)
@@ -60,7 +71,6 @@ public class Laser : MonoBehaviour
                 lineRenderer.colorGradient = laserColors[2];
                 break;
         }
-
     }
 
     public void OnMouseChange(InputAction.CallbackContext cb) => mousePos = cb.ReadValue<Vector2>();
@@ -168,6 +178,14 @@ public class Laser : MonoBehaviour
         }
     }
 
+    public void OnTab(InputAction.CallbackContext cb)
+    {
+        if (cb.started)
+            UI.EnableUI();
+        else if (cb.canceled)
+            UI.DisableUI();
+    }
+
     private void ResetAll()
     {
         if (actRec != null)
@@ -231,10 +249,54 @@ public class Laser : MonoBehaviour
         lineRenderer.SetPositions(linePoss);
     }
 
+    public void Unlock(int laser)
+    {
+        switch (laser)
+        {
+            case 0:
+                UI.Unlock(UI.UI.transform.Find("Activate").gameObject);
+                break;
+            case 1:
+                UI.Unlock(UI.UI.transform.Find("Heat").gameObject);
+                break;
+            case 2:
+                UI.Unlock(UI.UI.transform.Find("Stasis").gameObject);
+                break;
+        }
+    }
+
+    public void SwitchLaser(int laser) => LaserType = (LaserBehavior)laser;
+
     public enum LaserBehavior
     {
         Activation,
         Destruction,
         Stasis
+    }
+
+    public void LoadValues()
+    {
+        LaserType = LaserTransfer.Instance.laserType;
+        laserColors = LaserTransfer.Instance.laserColors;
+
+        for (int i = 0; i < LaserTransfer.Instance.unlocked.Length; i++)
+        {
+            if (LaserTransfer.Instance.unlocked[i])
+                Unlock(i);
+        }
+    }
+}
+
+[System.Serializable]
+public class LaserUI
+{
+    public GameObject UI;
+
+    public void DisableUI() => UI.SetActive(false);
+    public void EnableUI() => UI.SetActive(true);
+
+    public void Unlock(GameObject locked)
+    {
+        locked.SetActive(true);
     }
 }
