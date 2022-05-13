@@ -951,6 +951,7 @@ MonoBehaviour:
   maxFontSize: 2.5
   lifetime: 4
   fadeTime: 0.25
+  sortingLayer: 1000000000
   offset: {x: 0, y: 0}
   size: {x: 2, y: 1}
   color: {r: 1, g: 1, b: 1, a: 1}
@@ -1345,6 +1346,7 @@ GameObject:
   - component: {fileID: 254020805}
   - component: {fileID: 254020804}
   - component: {fileID: 254020806}
+  - component: {fileID: 254020807}
   m_Layer: 0
   m_Name: shelves with stuff
   m_TagString: Interact
@@ -1434,10 +1436,37 @@ MonoBehaviour:
   maxFontSize: 2.5
   lifetime: 4
   fadeTime: 0.25
+  sortingLayer: 1000000000
   offset: {x: 0, y: 0}
   size: {x: 2, y: 1}
   color: {r: 1, g: 1, b: 1, a: 1}
   text: Pfft, someone's a hoarder
+--- !u!61 &254020807
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254020803}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &255062004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5614,6 +5643,7 @@ MonoBehaviour:
   maxFontSize: 2.5
   lifetime: 4
   fadeTime: 0.25
+  sortingLayer: 1000000000
   offset: {x: 0, y: 0}
   size: {x: 2, y: 1}
   color: {r: 1, g: 1, b: 1, a: 1}
@@ -8521,6 +8551,7 @@ MonoBehaviour:
   maxFontSize: 2.5
   lifetime: 4
   fadeTime: 0.25
+  sortingLayer: 1000000000
   offset: {x: 0, y: 0}
   size: {x: 2, y: 1}
   color: {r: 1, g: 1, b: 1, a: 1}
@@ -11765,6 +11796,7 @@ MonoBehaviour:
   maxFontSize: 2.5
   lifetime: 4
   fadeTime: 0.25
+  sortingLayer: 1000000000
   offset: {x: 0, y: 0}
   size: {x: 2, y: 1}
   color: {r: 1, g: 1, b: 1, a: 1}
@@ -15182,6 +15214,7 @@ MonoBehaviour:
   maxFontSize: 2.5
   lifetime: 4
   fadeTime: 0.25
+  sortingLayer: 1000000000
   offset: {x: 0, y: 0}
   size: {x: 2, y: 1}
   color: {r: 1, g: 1, b: 1, a: 1}
@@ -16293,6 +16326,7 @@ MonoBehaviour:
   maxFontSize: 2.5
   lifetime: 4
   fadeTime: 0.25
+  sortingLayer: 1000000000
   offset: {x: 0, y: 0}
   size: {x: 2, y: 1}
   color: {r: 1, g: 1, b: 1, a: 1}
@@ -18040,6 +18074,7 @@ MonoBehaviour:
   maxFontSize: 2.5
   lifetime: 4
   fadeTime: 0.25
+  sortingLayer: 1000000000
   offset: {x: 0, y: 0}
   size: {x: 2, y: 1}
   color: {r: 1, g: 1, b: 1, a: 1}
