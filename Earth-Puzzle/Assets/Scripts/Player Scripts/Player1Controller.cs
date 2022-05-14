@@ -9,6 +9,8 @@ public class Player1Controller : OldPlayerController
     InputAction jump;
     InputAction drop;
 
+    public bool held;
+
     protected override void Awake()
     {
         movementActions = new TwoPlayerActions();
@@ -46,6 +48,9 @@ public class Player1Controller : OldPlayerController
     protected override void OnSide(InputAction.CallbackContext cb)
     {
         moveDirection = cb.ReadValue<float>();
+
+        if (held)
+            return;
 
         if (moveDirection > 0)
             transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);

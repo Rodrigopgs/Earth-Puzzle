@@ -16,5 +16,5 @@ public abstract class Interactable : MonoBehaviour
     /// The method that is called to determine if this object can be interacted with. This method can be overridden.
     /// </summary>
     /// <returns>True if it can be interacted with, false if it cannot</returns>
-    public virtual bool Conditions() => true;
+    public virtual bool Conditions(GameObject from) => true;
 }

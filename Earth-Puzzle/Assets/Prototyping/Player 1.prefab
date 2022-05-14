@@ -520,9 +520,10 @@ GameObject:
   - component: {fileID: 2992262779934301434}
   - component: {fileID: 4607253037658360919}
   - component: {fileID: 2870054667083751183}
+  - component: {fileID: 1425316459968908763}
   m_Layer: 7
   m_Name: Player 1
-  m_TagString: Player1
+  m_TagString: Interact
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1010,3 +1011,16 @@ LineRenderer:
     generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1425316459968908763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3807103306366083262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00192ab2d28805442adf1dd1c7a8c11f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwForce: {x: 6, y: 8}

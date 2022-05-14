@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Animator))]
 public class Player2Controller : OldPlayerController
 {
     TwoPlayerActions movementActions;
@@ -8,6 +9,9 @@ public class Player2Controller : OldPlayerController
     InputAction side;
     InputAction jump;
     InputAction drop;
+
+    Arm arms;
+    Animator animator;
 
     protected override void Awake()
     {
@@ -41,11 +45,38 @@ public class Player2Controller : OldPlayerController
         drag = rb2d.drag;
 
         startingScale = transform.localScale;
+        arms = GetComponent<Arm>();
+        animator = GetComponent<Animator>();
     }
 
     protected override void OnSide(InputAction.CallbackContext cb)
     {
         moveDirection = cb.ReadValue<float>();
+
+        if (arms.states.attatched && !arms.animtaions.HasNull())
+        {
+            if (moveDirection < 0 && arms.direction == 1)
+            {
+                transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);
+                animator.Play(arms.animtaions.pull.name);
+            }
+            else if (moveDirection > 0 && arms.direction == 1)
+            {
+                transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);
+                animator.Play(arms.animtaions.push.name);
+            }
+            else if (moveDirection < 0 && arms.direction == -1)
+            {
+                transform.localScale = new Vector3(-startingScale.x, startingScale.y, startingScale.z);
+                animator.Play(arms.animtaions.push.name);
+            }
+            else if (moveDirection > 0 && arms.direction == -1)
+            {
+                transform.localScale = new Vector3(-startingScale.x, startingScale.y, startingScale.z);
+                animator.Play(arms.animtaions.pull.name);
+            }
+            return;
+        }
 
         if (moveDirection > 0)
             transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);
@@ -59,6 +90,9 @@ public class Player2Controller : OldPlayerController
     }
     protected override void OnJump(InputAction.CallbackContext cb)
     {
+        if (arms.states.attatched)
+            return;
+
         if (cb.ReadValue<float>() >= 0.5f)
         {
             jumpThisFrame = true;
@@ -150,11 +184,14 @@ public class Player2Controller : OldPlayerController
 
             rb2d.gravityScale = airGravity;
             rb2d.drag = airDrag;
+
+            if (arms.animtaions.jumpHolding != null)
+                animator.Play(arms.animtaions.jumpHolding.name);
         }
 
         if ((forceVector != Vector2.zero || absoluteVector != Vector2.zero) && incommingForce == Vector2.zero)
         {
-            rb2d.AddForce(forceVector + addForce, ForceMode2D.Force);
+            rb2d.AddForce((forceVector + addForce) * (arms.states.attatched ? arms.dragSpeedModifier : 1), ForceMode2D.Force);
             rb2d.velocity = new Vector2(Mathf.Clamp(rb2d.velocity.x, -maxSpeed, maxSpeed), absoluteVector.y);
             addForce = Vector2.zero;
         }
