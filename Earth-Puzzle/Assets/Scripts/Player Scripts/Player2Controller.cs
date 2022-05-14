@@ -47,6 +47,8 @@ public class Player2Controller : OldPlayerController
         startingScale = transform.localScale;
         arms = GetComponent<Arm>();
         animator = GetComponent<Animator>();
+
+        RespawnPosition = transform.position;
     }
 
     protected override void OnSide(InputAction.CallbackContext cb)

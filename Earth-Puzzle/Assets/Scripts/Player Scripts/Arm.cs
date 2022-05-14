@@ -31,6 +31,15 @@ public class Arm : MonoBehaviour
     {
         if (ArmTransfer.Instance != null)
             new ArmTransfer(this);
+        else
+            LoadValues();
+    }
+
+    private void LoadValues()
+    {
+        attatch = ArmTransfer.Instance.attatch;
+        pickup = ArmTransfer.Instance.pickup;
+        throwPlayer = ArmTransfer.Instance.throwPlayer;
     }
 
     public void UnlockPickup() => pickup = true;
@@ -70,5 +79,10 @@ public class Arm : MonoBehaviour
             attatched = false;
             holding = false;
         }
+    }
+
+    private void OnDestroy()
+    {
+        new ArmTransfer(this);
     }
 }

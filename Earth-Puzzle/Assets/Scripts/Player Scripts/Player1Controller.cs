@@ -43,6 +43,8 @@ public class Player1Controller : OldPlayerController
         drag = rb2d.drag;
 
         startingScale = transform.localScale;
+
+        RespawnPosition = transform.position;
     }
 
     protected override void OnSide(InputAction.CallbackContext cb)
