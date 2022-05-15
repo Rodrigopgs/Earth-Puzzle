@@ -9,7 +9,7 @@ public abstract class OldPlayerController : MonoBehaviour
     public Vector2 outsideForce { get { return incommingForce; } set { incommingForce = value; } }
     public Vector2 additiveForce { get { return addForce; } set { addForce = value; } }
 
-    protected Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
 
     [Header("Movement")]
     public float moveSpeed = 16f;
