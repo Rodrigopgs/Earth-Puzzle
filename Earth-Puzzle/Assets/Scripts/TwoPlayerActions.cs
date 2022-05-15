@@ -185,6 +185,15 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchLaser"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad2f9ee1-fd8c-4ebc-b68c-7ae6fe5ca789"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -251,6 +260,17 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8bd01885-452d-4034-963e-6fbb8b4cd590"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""SwitchLaser"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -387,6 +407,15 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Open"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d663dd0-cf41-4e35-9210-fabcef8e2378"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -431,6 +460,17 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Player2"",
                     ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""413b738a-f293-44e4-8fa9-4d94e2a2c3f0"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Player1"",
+                    ""action"": ""Open"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -478,6 +518,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         m_Player1_Jump = m_Player1.FindAction("Jump", throwIfNotFound: true);
         m_Player1_Down = m_Player1.FindAction("Down", throwIfNotFound: true);
         m_Player1_Interact = m_Player1.FindAction("Interact", throwIfNotFound: true);
+        m_Player1_SwitchLaser = m_Player1.FindAction("SwitchLaser", throwIfNotFound: true);
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Movement = m_Player2.FindAction("Movement", throwIfNotFound: true);
@@ -488,6 +529,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Mouse = m_Mouse.FindAction("Mouse", throwIfNotFound: true);
         m_Mouse_Click = m_Mouse.FindAction("Click", throwIfNotFound: true);
+        m_Mouse_Open = m_Mouse.FindAction("Open", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -600,6 +642,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player1_Jump;
     private readonly InputAction m_Player1_Down;
     private readonly InputAction m_Player1_Interact;
+    private readonly InputAction m_Player1_SwitchLaser;
     public struct Player1Actions
     {
         private @TwoPlayerActions m_Wrapper;
@@ -608,6 +651,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player1_Jump;
         public InputAction @Down => m_Wrapper.m_Player1_Down;
         public InputAction @Interact => m_Wrapper.m_Player1_Interact;
+        public InputAction @SwitchLaser => m_Wrapper.m_Player1_SwitchLaser;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -629,6 +673,9 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
+                @SwitchLaser.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSwitchLaser;
+                @SwitchLaser.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSwitchLaser;
+                @SwitchLaser.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSwitchLaser;
             }
             m_Wrapper.m_Player1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -645,6 +692,9 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @SwitchLaser.started += instance.OnSwitchLaser;
+                @SwitchLaser.performed += instance.OnSwitchLaser;
+                @SwitchLaser.canceled += instance.OnSwitchLaser;
             }
         }
     }
@@ -712,12 +762,14 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
     private IMouseActions m_MouseActionsCallbackInterface;
     private readonly InputAction m_Mouse_Mouse;
     private readonly InputAction m_Mouse_Click;
+    private readonly InputAction m_Mouse_Open;
     public struct MouseActions
     {
         private @TwoPlayerActions m_Wrapper;
         public MouseActions(@TwoPlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Mouse => m_Wrapper.m_Mouse_Mouse;
         public InputAction @Click => m_Wrapper.m_Mouse_Click;
+        public InputAction @Open => m_Wrapper.m_Mouse_Open;
         public InputActionMap Get() { return m_Wrapper.m_Mouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -733,6 +785,9 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Click.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnClick;
                 @Click.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnClick;
                 @Click.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnClick;
+                @Open.started -= m_Wrapper.m_MouseActionsCallbackInterface.OnOpen;
+                @Open.performed -= m_Wrapper.m_MouseActionsCallbackInterface.OnOpen;
+                @Open.canceled -= m_Wrapper.m_MouseActionsCallbackInterface.OnOpen;
             }
             m_Wrapper.m_MouseActionsCallbackInterface = instance;
             if (instance != null)
@@ -743,6 +798,9 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Click.started += instance.OnClick;
                 @Click.performed += instance.OnClick;
                 @Click.canceled += instance.OnClick;
+                @Open.started += instance.OnOpen;
+                @Open.performed += instance.OnOpen;
+                @Open.canceled += instance.OnOpen;
             }
         }
     }
@@ -777,6 +835,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSwitchLaser(InputAction.CallbackContext context);
     }
     public interface IPlayer2Actions
     {
@@ -789,5 +848,6 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
     {
         void OnMouse(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
+        void OnOpen(InputAction.CallbackContext context);
     }
 }

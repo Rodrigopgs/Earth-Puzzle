@@ -9,6 +9,8 @@ public class Player1Controller : OldPlayerController
     InputAction jump;
     InputAction drop;
 
+    public bool held;
+
     protected override void Awake()
     {
         movementActions = new TwoPlayerActions();
@@ -41,11 +43,16 @@ public class Player1Controller : OldPlayerController
         drag = rb2d.drag;
 
         startingScale = transform.localScale;
+
+        RespawnPosition = transform.position;
     }
 
     protected override void OnSide(InputAction.CallbackContext cb)
     {
         moveDirection = cb.ReadValue<float>();
+
+        if (held)
+            return;
 
         if (moveDirection > 0)
             transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);
@@ -163,7 +170,7 @@ public class Player1Controller : OldPlayerController
             rb2d.AddForce(incommingForce, ForceMode2D.Impulse);
             incommingForce = Vector2.zero;
         }
-        else
+        else if (additiveForce != Vector2.zero)
         {
             rb2d.MovePosition((Vector2)transform.position + additiveForce);
             additiveForce = Vector2.zero;

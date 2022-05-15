@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 923282066417286280}
   - component: {fileID: 8986082127967318061}
   - component: {fileID: 5017278462490222282}
+  - component: {fileID: 556845176}
+  - component: {fileID: 556845177}
   m_Layer: 0
   m_Name: Player 2
   m_TagString: Player2
@@ -178,3 +180,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b027cbba67dd847962912acf2395d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arms: {fileID: 0}
+--- !u!95 &556845176
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8986082127967318066}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &556845177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8986082127967318066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b1e5133be1a65459f71f373833920a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragSpeedModifier: 0.5
+  direction: 0
+  attatch: 1
+  pickup: 0
+  throwPlayer: 1
+  animtaions:
+    pull: {fileID: 0}
+    push: {fileID: 0}
+    walkHolding: {fileID: 0}
+    jumpHolding: {fileID: 0}
+    idleHolding: {fileID: 0}
+  states:
+    pushDirection: 0
+    attatched: 0
+    holding: 0
+  attatched: {fileID: 0}
+  holding: {fileID: 0}
+  holdingPreview: {fileID: 0}
+  playerThrower: {fileID: 0}

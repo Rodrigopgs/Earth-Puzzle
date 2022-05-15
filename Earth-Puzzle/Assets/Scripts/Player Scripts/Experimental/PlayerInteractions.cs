@@ -86,7 +86,7 @@ public class PlayerInteractions : MonoBehaviour
         if (collision.gameObject.CompareTag("Interact"))
         {
             Interactable temp = collision.GetComponent<Interactable>();
-            if (!interactables.Contains(temp) && temp.Conditions())
+            if (!interactables.Contains(temp) && temp.Conditions(gameObject))
                 interactables.Add(temp);
             else
                 temp.GetComponent<SpriteRenderer>().material.SetInt("_Glow", 0);
@@ -113,7 +113,7 @@ public class PlayerInteractions : MonoBehaviour
         List<Interactable> temps = new List<Interactable>(interactables);
         foreach (Interactable interactable in temps)
         {
-            if (!interactable.Conditions())
+            if (!interactable.Conditions(gameObject))
             {
                 interactables.Remove(interactable);
                 if (outlined == interactable)
