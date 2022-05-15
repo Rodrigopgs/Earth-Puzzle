@@ -29,7 +29,7 @@ public class Arm : MonoBehaviour
 
     private void Start()
     {
-        if (ArmTransfer.Instance != null)
+        if (ArmTransfer.Instance == null)
             new ArmTransfer(this);
         else
             LoadValues();
