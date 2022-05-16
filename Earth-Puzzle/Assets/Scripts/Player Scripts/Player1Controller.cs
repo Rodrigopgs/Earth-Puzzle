@@ -9,6 +9,8 @@ public class Player1Controller : OldPlayerController
     InputAction jump;
     InputAction drop;
 
+    public bool held;
+
     protected override void Awake()
     {
         movementActions = new TwoPlayerActions();
@@ -41,11 +43,16 @@ public class Player1Controller : OldPlayerController
         drag = rb2d.drag;
 
         startingScale = transform.localScale;
+
+        RespawnPosition = transform.position;
     }
 
     protected override void OnSide(InputAction.CallbackContext cb)
     {
         moveDirection = cb.ReadValue<float>();
+
+        if (held)
+            return;
 
         if (moveDirection > 0)
             transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);
@@ -82,24 +89,38 @@ public class Player1Controller : OldPlayerController
 
         if (!jumping)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, raycastDistance, jumpMask);
-            if (hit.collider != null && !hit.collider.isTrigger)
-            {
-                onGround = true;
-                cyote = false;
-                jumping = false;
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.down, raycastDistance, jumpMask);
 
-                cyoteWaitTime = 0f;
-                rb2d.gravityScale = startingGravityScale;
-
-                rb2d.drag = drag;
-            }
-            else
+            if (hits.Length <= 0)
             {
                 onGround = false;
 
                 rb2d.drag = airDrag;
                 rb2d.gravityScale = airGravity;
+                return;
+            }
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider != null && !hit.collider.isTrigger)
+                {
+                    onGround = true;
+                    cyote = false;
+                    jumping = false;
+
+                    cyoteWaitTime = 0f;
+                    rb2d.gravityScale = startingGravityScale;
+
+                    rb2d.drag = drag;
+                    return;
+                }
+                else
+                {
+                    onGround = false;
+
+                    rb2d.drag = airDrag;
+                    rb2d.gravityScale = airGravity;
+                }
             }
         }
 
@@ -141,7 +162,6 @@ public class Player1Controller : OldPlayerController
             absoluteVector.y = jumpStrength;
 
             onGround = false;
-            jumpThisFrame = false;
             cyote = false;
             jumping = true;
 
@@ -152,23 +172,22 @@ public class Player1Controller : OldPlayerController
             rb2d.drag = airDrag;
         }
 
-        if ((forceVector != Vector2.zero || absoluteVector != Vector2.zero) && incommingForce == Vector2.zero)
+        if ((forceVector != Vector2.zero || jumpThisFrame || jumping || cyote) && incommingForce == Vector2.zero)
         {
-            rb2d.AddForce(forceVector + addForce, ForceMode2D.Force);
+            rb2d.AddForce(forceVector, ForceMode2D.Impulse);
             rb2d.velocity = new Vector2(Mathf.Clamp(rb2d.velocity.x, -maxSpeed, maxSpeed), absoluteVector.y);
-            addForce = Vector2.zero;
         }
         else if (incommingForce != Vector2.zero)
         {
             rb2d.AddForce(incommingForce, ForceMode2D.Impulse);
             incommingForce = Vector2.zero;
         }
-        else
+        else if (additiveForce != Vector2.zero && (!jumpThisFrame && !jumping && !cyote))
         {
             rb2d.MovePosition((Vector2)transform.position + additiveForce);
             additiveForce = Vector2.zero;
-
         }
+        jumpThisFrame = false;
     }
     protected override void OnDestroy()
     {

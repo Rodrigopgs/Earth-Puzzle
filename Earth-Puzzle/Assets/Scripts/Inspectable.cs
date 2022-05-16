@@ -54,7 +54,7 @@ public class Inspectable : Interactable
         Player2Interactions.Instance.UpdateInteractables();
     }
 
-    public override bool Conditions() => textObject == null;
+    public override bool Conditions(GameObject from) => textObject == null;
 
     private class InspectTextFader : MonoBehaviour
     {

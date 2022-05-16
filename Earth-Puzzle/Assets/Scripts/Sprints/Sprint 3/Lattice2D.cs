@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
 
 /// <summary>
-/// A 2D 'lattice' that
+/// A 2D 'lattice'
 /// </summary>
 /// <typeparam name="TCell"></typeparam>
 public class Lattice2D<TCell> : IEnumerable<TCell>
@@ -45,6 +46,12 @@ public class Lattice2D<TCell> : IEnumerable<TCell>
             }
         }
     }
+
+    internal Vector3 RoundToLatticeWorldPosition(Vector3 vector3)
+    {
+        throw new NotImplementedException();
+    }
+
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     public TCell GetCell(int x, int y) => Cells[x, y];

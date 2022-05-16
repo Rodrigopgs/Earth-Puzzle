@@ -21,6 +21,9 @@ public class Player2Interactions : MonoBehaviour
     List<Interactable> interactables = new List<Interactable>();
     Interactable outlined;
 
+    // arms
+    public Arm arms;
+
     private void Awake()
     {
         Instance = this;
@@ -37,6 +40,12 @@ public class Player2Interactions : MonoBehaviour
         interact.Enable();
 
         interact.performed += OnInteract;
+        interact.canceled += CancelInteract;
+    }
+
+    private void Start()
+    {
+        arms = GetComponent<Arm>();
     }
 
     private void OnInteract(InputAction.CallbackContext cb)
@@ -44,8 +53,37 @@ public class Player2Interactions : MonoBehaviour
         if (Time.timeScale == 0)
             return;
 
+        if (arms.states.holding == true)
+        {
+            if (arms.holding != null)
+                arms.holding.Place();
+            if (arms.playerThrower != null)
+                arms.playerThrower.Throw();
+            return;
+        }
+
+        if (arms.states.HasState())
+            return;
+
         if (outlined != null)
             outlined.OnInteract(2);
+    }
+
+    private void CancelInteract(InputAction.CallbackContext cb)
+    {
+        if (arms.states.HasState())
+        {
+            if (arms.states.attatched)
+            {
+                if (cb.canceled)
+                {
+                    arms.attatched.stuck = false;
+                    arms.states.Cancel();
+                    arms.attatched.rb2d.isKinematic = true;
+                    arms.attatched.rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                }
+            }
+        }
     }
 
     private void Update()
@@ -76,6 +114,7 @@ public class Player2Interactions : MonoBehaviour
     private void OnDestroy()
     {
         interact.performed -= OnInteract;
+        interact.canceled -= CancelInteract;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -83,7 +122,7 @@ public class Player2Interactions : MonoBehaviour
         if (collision.gameObject.CompareTag("Interact"))
         {
             Interactable temp = collision.GetComponent<Interactable>();
-            if (!interactables.Contains(temp) && temp.Conditions())
+            if (!interactables.Contains(temp) && temp.Conditions(gameObject))
                 interactables.Add(temp);
             else
                 temp.GetComponent<SpriteRenderer>().material.SetInt("_Glow", 0);
@@ -110,7 +149,7 @@ public class Player2Interactions : MonoBehaviour
         List<Interactable> temps = new List<Interactable>(interactables);
         foreach (Interactable interactable in temps)
         {
-            if (!interactable.Conditions())
+            if (!interactable.Conditions(gameObject))
             {
                 interactables.Remove(interactable);
                 if (outlined == interactable)

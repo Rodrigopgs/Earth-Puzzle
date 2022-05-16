@@ -53,7 +53,7 @@ public class PushButton : Interactable
         Visuals(true);
     }
 
-    public override bool Conditions() => !triggered;
+    public override bool Conditions(GameObject from) => !triggered;
 
     private void Update()
     {

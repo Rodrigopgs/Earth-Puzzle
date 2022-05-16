@@ -1,5 +1,3 @@
-using System.Net.Sockets;
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -285,6 +283,12 @@ public class Laser : MonoBehaviour
                 Unlock(i);
         }
     }
+
+    private void OnDestroy()
+    {
+        new LaserTransfer(this);
+    }
+
 }
 
 [System.Serializable]

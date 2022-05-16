@@ -4,10 +4,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class OldPlayerController : MonoBehaviour
 {
+    public Vector2 RespawnPosition { get; set; }
+
     public Vector2 outsideForce { get { return incommingForce; } set { incommingForce = value; } }
     public Vector2 additiveForce { get { return addForce; } set { addForce = value; } }
 
-    protected Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
 
     [Header("Movement")]
     public float moveSpeed = 16f;
@@ -66,4 +68,10 @@ public abstract class OldPlayerController : MonoBehaviour
 
     protected abstract void FixedUpdate();
     protected abstract void OnDestroy();
+
+    public void Kill()
+    {
+        Destroy(gameObject);
+        new Checkpoint.Respawner(this);
+    }
 }
