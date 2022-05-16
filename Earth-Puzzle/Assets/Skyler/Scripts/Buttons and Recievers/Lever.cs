@@ -31,8 +31,6 @@ public class Lever : Interactable
 
     private void Start()
     {
-        Visuals(false);
-
         switch (type)
         {
             case LeverType.Sprite:
@@ -42,6 +40,8 @@ public class Lever : Interactable
                 animator = GetComponent<Animator>();
                 break;
         }
+
+        Visuals(false);
     }
 
     public override void OnInteract(int playerNumber)

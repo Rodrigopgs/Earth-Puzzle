@@ -33,8 +33,6 @@ public class PushButton : Interactable
 
     private void Start()
     {
-        Visuals(false);
-
         switch (type)
         {
             case PushButtonType.Sprite:
@@ -44,6 +42,9 @@ public class PushButton : Interactable
                 animator = GetComponent<Animator>();
                 break;
         }
+
+        Visuals(false);
+        Visuals(false);
     }
 
     public override void OnInteract(int playerNumber)
