@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+
 using UnityEditor;
+
+using UnityEngine;
 
 [CustomEditor(typeof(Lever))]
 [CanEditMultipleObjects]
-public class LeverEditor : Editor
+public class ActivatedHazardEditor : Editor
 {
-    SerializedProperty triggerEvents;
+        SerializedProperty triggerEvents;
     SerializedProperty stopEvents;
     SerializedProperty type;
 
@@ -18,7 +20,7 @@ public class LeverEditor : Editor
     SerializedProperty activated;
 
     private void OnEnable()
-    {
+{
         type = serializedObject.FindProperty("type");
         triggerEvents = serializedObject.FindProperty("triggerEvents");
         stopEvents = serializedObject.FindProperty("stopEvents");
@@ -32,7 +34,7 @@ public class LeverEditor : Editor
     }
 
     public override void OnInspectorGUI()
-    {
+{
         serializedObject.Update();
 
         EditorGUILayout.PropertyField(triggerEvents);
@@ -51,8 +53,8 @@ public class LeverEditor : Editor
         {
             EditorGUILayout.PropertyField(idle);
             EditorGUILayout.PropertyField(activated);
-        }
+}
 
         serializedObject.ApplyModifiedProperties();
     }
-}
+    }

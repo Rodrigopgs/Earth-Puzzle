@@ -6,6 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Checkpoint : MonoBehaviour
 {
+    [Header("Set this to true if you do not want to define a respawn position.\n" +
+        "It will instead use the gameObject's transform position (using the pivot point, not the center).")]
+    public bool useTransformPosition;
+    [HideInInspector]
+    public Vector2 respawnPosition;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,7 +23,14 @@ public class Checkpoint : MonoBehaviour
     {
         public Respawner(OldPlayerController controller)
         {
-            Instantiate(controller, controller.RespawnPosition, Quaternion.identity);
+            GameObject toTrack = Instantiate(controller.gameObject, controller.RespawnPosition, Quaternion.identity);
+            for (int i = 0; i < MultiplayerCameraBounds.Instance.objectsToTrack.Length; i++)
+            {
+                if (MultiplayerCameraBounds.Instance.objectsToTrack[i] == controller.transform)
+                {
+                    MultiplayerCameraBounds.Instance.objectsToTrack[i] = toTrack.transform;
+                }
+            }
         }
     }
 

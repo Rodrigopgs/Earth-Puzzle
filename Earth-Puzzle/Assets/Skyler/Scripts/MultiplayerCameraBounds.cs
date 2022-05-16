@@ -26,6 +26,8 @@ public class MultiplayerCameraBounds : MonoBehaviour
         get => region;
     }
 
+    public static MultiplayerCameraBounds Instance { get; private set; }
+
     [SerializeField, Tooltip("Which corners to use from the Corners list to clamp the camera's position. Setting this through the inspector will NOT change the region during gameplay.")]
     private int region = 0;
 
@@ -61,6 +63,11 @@ public class MultiplayerCameraBounds : MonoBehaviour
     bool zoomed;
 
     Vector2 cameraSize;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {

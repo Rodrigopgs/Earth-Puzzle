@@ -69,9 +69,22 @@ public abstract class OldPlayerController : MonoBehaviour
     protected abstract void FixedUpdate();
     protected abstract void OnDestroy();
 
-    public void Kill()
+    public void Kill(Hazard hazard)
     {
-        Destroy(gameObject);
+        onGround = true;
+        jumpThisFrame = false;
+        cyote = false;
+        groundLastUpdate = true;
+        jumping = false;
+
+        rb2d.drag = drag;
+        rb2d.gravityScale = startingGravityScale;
+
+        incommingForce = Vector2.zero;
+        addForce = Vector2.zero;
+
         new Checkpoint.Respawner(this);
+        Destroy(gameObject);
+        hazard.Killed.Remove(this);
     }
 }
