@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockMonster : MonoBehaviour
+public class RockMonster : Hazard
 {
     Transform self;
     bool walkright;
@@ -33,8 +33,11 @@ public class RockMonster : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag != "Player1" && other.gameObject.tag != "Player2" && other.gameObject.tag != "RockMonster")
+        OldPlayerController playercontroller = other.GetComponent<OldPlayerController>();
+
+        if (other.gameObject.tag != "RockMonster")
         {
+
             if (walkright == true)
             {
                 walkright = false;
@@ -45,6 +48,11 @@ public class RockMonster : MonoBehaviour
             }
 
         }
+        if (playercontroller != null && !Killed.Contains(playercontroller) && !other.isTrigger)
+        {
+            Kill(playercontroller);
+        }
+        
     }
 
 
