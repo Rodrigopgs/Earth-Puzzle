@@ -9,7 +9,7 @@ public class BoxHazard : Hazard
     private void OnTriggerEnter2D(Collider2D collision)
     {
         OldPlayerController c = collision.GetComponent<OldPlayerController>();
-        if (c != null && !Killed.Contains(c))
+        if (c != null && !collision.isTrigger && !Killed.Contains(c))
             Kill(c);
     }
 }

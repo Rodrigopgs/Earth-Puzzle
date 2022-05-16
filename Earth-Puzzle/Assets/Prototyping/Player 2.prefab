@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a204f93a51c5199489d690ea31dcdd2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb2d: {fileID: 0}
   moveSpeed: 100
   maxSpeed: 3
   jumpMask:
@@ -217,7 +218,7 @@ MonoBehaviour:
   direction: 0
   attatch: 1
   pickup: 0
-  throwPlayer: 1
+  throwPlayer: 0
   animtaions:
     pull: {fileID: 0}
     push: {fileID: 0}
