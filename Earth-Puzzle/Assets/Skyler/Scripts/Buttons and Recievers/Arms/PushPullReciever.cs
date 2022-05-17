@@ -80,7 +80,7 @@ public class PushPullReciever : Interactable
         {
             Debug.Log("t");
 
-            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, spriteBounds.extents, 0, Vector2.down, Mathf.Abs(raycastDistance), ignoreMask);
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, spriteBounds.extents, 0, Vector2.down, Mathf.Abs(raycastDistance * transform.lossyScale.y), ignoreMask);
 
             foreach (RaycastHit2D hit in hits)
                 if (hit.collider == null || hit.collider.isTrigger)
@@ -117,12 +117,4 @@ public class PushPullReciever : Interactable
                 playerOnSide = false;
         }
     }
-
-#if UNITY_EDITOR
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(new Vector2(transform.position.x, transform.position.y), new Vector2(transform.position.x, transform.position.y - (Mathf.Abs(raycastDistance) + spriteBounds.extents.y)));
-    }
-#endif
 }
