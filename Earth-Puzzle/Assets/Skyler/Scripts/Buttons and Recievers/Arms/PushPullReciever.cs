@@ -9,22 +9,21 @@ public class PushPullReciever : Interactable
 
     public bool stuck;
 
+    Bounds spriteBounds;
+
     bool playerOnSide;
 
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        spriteBounds = GetComponent<SpriteRenderer>().bounds;
     }
 
     public override void OnInteract(int playerNumber)
     {
         if (stuck)
         {
-            arm.states.attatched = false;
-            arm.attatched = this;
             stuck = false;
-            rb2d.isKinematic = true;
-            rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         }
         else
         {
@@ -62,7 +61,7 @@ public class PushPullReciever : Interactable
 
     private void FixedUpdate()
     {
-        if (stuck)
+        if (stuck && arm != null)
         {
             rb2d.MovePosition((arm.transform.position - transform.position).normalized * Vector3.Distance(transform.position, arm.transform.position) + transform.position);
         }
@@ -70,6 +69,22 @@ public class PushPullReciever : Interactable
 
     private void Update()
     {
+
+        if (!stuck)
+        {
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(new Vector2(transform.position.x, transform.position.y - spriteBounds.extents.y + float.Epsilon), spriteBounds.extents, 0, Vector2.down, 0.01f);
+
+            foreach (RaycastHit2D hit in hits)
+                if (hit.collider.isTrigger)
+                    continue;
+                else
+                {
+                    rb2d.isKinematic = true;
+                    rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                    break;
+                }
+        }
+
         Collider2D r = Physics2D.OverlapBox(transform.position + Vector3.right, Vector2.one * 0.5f, 0);
         Collider2D l = Physics2D.OverlapBox(transform.position + -Vector3.right, Vector2.one * 0.5f, 0);
 

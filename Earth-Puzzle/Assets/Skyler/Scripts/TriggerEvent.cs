@@ -10,6 +10,7 @@ public class TriggerEvent : MonoBehaviour
     public UnityEvent triggerEvent;
 
     public bool requirePlayer;
+    public bool aSynchronous;
     public bool requireBothPlayers;
 
     int players;
@@ -52,7 +53,7 @@ public class TriggerEvent : MonoBehaviour
         if (requireBothPlayers)
         {
             OldPlayerController c = collision.GetComponent<OldPlayerController>();
-            if (c != null)
+            if (c != null && !aSynchronous)
                 players--;
         }
     }
