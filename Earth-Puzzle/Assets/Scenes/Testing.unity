@@ -208,14 +208,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 556845177, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
-      propertyPath: pickup
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 556845177, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
-      propertyPath: throwPlayer
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8986082127967318057, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -273,10 +265,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1425316459968908763, guid: 75fc98456ed39a74f92ae007c282fc68, type: 3}
-      propertyPath: height
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 3807103306366083259, guid: 75fc98456ed39a74f92ae007c282fc68, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -324,10 +312,6 @@ PrefabInstance:
     - target: {fileID: 3807103306366083262, guid: 75fc98456ed39a74f92ae007c282fc68, type: 3}
       propertyPath: m_Name
       value: Player 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6377026468235584016, guid: 75fc98456ed39a74f92ae007c282fc68, type: 3}
-      propertyPath: m_Radius
-      value: 0.65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75fc98456ed39a74f92ae007c282fc68, type: 3}
