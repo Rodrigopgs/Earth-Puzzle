@@ -7,7 +7,11 @@ public class PushPullReciever : Interactable
     Arm arm;
     public Rigidbody2D rb2d;
 
+    public LayerMask ignoreMask;
+
     public bool stuck;
+    [Space]
+    public float raycastDistance;
 
     Bounds spriteBounds;
 
@@ -24,6 +28,8 @@ public class PushPullReciever : Interactable
         if (stuck)
         {
             stuck = false;
+            arm.states.attatched = false;
+            arm.attatched = null;
         }
         else
         {
@@ -72,25 +78,51 @@ public class PushPullReciever : Interactable
 
         if (!stuck)
         {
-            RaycastHit2D[] hits = Physics2D.BoxCastAll(new Vector2(transform.position.x, transform.position.y - spriteBounds.extents.y + float.Epsilon), spriteBounds.extents, 0, Vector2.down, 0.01f);
+            Debug.Log("t");
+
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, spriteBounds.extents, 0, Vector2.down, Mathf.Abs(raycastDistance), ignoreMask);
 
             foreach (RaycastHit2D hit in hits)
-                if (hit.collider.isTrigger)
+                if (hit.collider == null || hit.collider.isTrigger)
                     continue;
                 else
                 {
+                    Debug.Log("2");
                     rb2d.isKinematic = true;
                     rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-                    break;
+                    goto finish;
                 }
+
+            rb2d.isKinematic = false;
+            rb2d.constraints = RigidbodyConstraints2D.None;
         }
 
-        Collider2D r = Physics2D.OverlapBox(transform.position + Vector3.right, Vector2.one * 0.5f, 0);
-        Collider2D l = Physics2D.OverlapBox(transform.position + -Vector3.right, Vector2.one * 0.5f, 0);
+    finish:
+        Collider2D[] r = Physics2D.OverlapBoxAll(transform.position + Vector3.right, Vector2.one * 0.5f, 0);
+        Collider2D[] l = Physics2D.OverlapBoxAll(transform.position + -Vector3.right, Vector2.one * 0.5f, 0);
 
-        if ((r != null && r.CompareTag("Player2")) || (l != null && l.CompareTag("Player2")))
-            playerOnSide = true;
-        else
-            playerOnSide = false;
+        foreach (Collider2D c in r)
+        {
+            if (c != null && c.CompareTag("Player2"))
+                playerOnSide = true;
+            else
+                playerOnSide = false;
+        }
+
+        foreach (Collider2D c in l)
+        {
+            if (c != null && c.CompareTag("Player2"))
+                playerOnSide = true;
+            else
+                playerOnSide = false;
+        }
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(new Vector2(transform.position.x, transform.position.y), new Vector2(transform.position.x, transform.position.y - (Mathf.Abs(raycastDistance) + spriteBounds.extents.y)));
+    }
+#endif
 }
