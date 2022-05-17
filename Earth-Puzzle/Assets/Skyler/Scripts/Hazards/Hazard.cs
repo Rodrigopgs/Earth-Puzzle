@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 
 using UnityEngine;
 
@@ -27,5 +28,4 @@ public abstract class Hazard : MonoBehaviour
         p1.Kill(this);
         p2.Kill(this);
     }
-
 }

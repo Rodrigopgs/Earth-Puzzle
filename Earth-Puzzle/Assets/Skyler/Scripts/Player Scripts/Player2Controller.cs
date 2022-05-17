@@ -10,11 +10,17 @@ public class Player2Controller : OldPlayerController
     InputAction jump;
     InputAction drop;
 
+    public AnimationClip walkAnim;
+    public AnimationClip jumpAnim;
+    public AnimationClip idleAnim;
+
     Arm arms;
     Animator animator;
 
     protected override void Awake()
     {
+        RespawnPosition = transform.position;
+
         movementActions = new TwoPlayerActions();
         player2Actions = movementActions.Player2;
         side = player2Actions.Movement;
@@ -47,8 +53,6 @@ public class Player2Controller : OldPlayerController
         startingScale = transform.localScale;
         arms = GetComponent<Arm>();
         animator = GetComponent<Animator>();
-
-        RespawnPosition = transform.position;
     }
 
     protected override void OnSide(InputAction.CallbackContext cb)
@@ -57,27 +61,40 @@ public class Player2Controller : OldPlayerController
 
         if (arms.states.attatched && !arms.animtaions.HasNull())
         {
-            if (moveDirection < 0 && arms.direction == 1)
+            if (moveDirection <= 0 && arms.direction == 1)
             {
-                transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);
                 animator.Play(arms.animtaions.pull.name);
             }
-            else if (moveDirection > 0 && arms.direction == 1)
+            else if (moveDirection >= 0 && arms.direction == 1)
             {
-                transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);
                 animator.Play(arms.animtaions.push.name);
             }
-            else if (moveDirection < 0 && arms.direction == -1)
+            else if (moveDirection <= 0 && arms.direction == -1)
             {
-                transform.localScale = new Vector3(-startingScale.x, startingScale.y, startingScale.z);
                 animator.Play(arms.animtaions.push.name);
             }
-            else if (moveDirection > 0 && arms.direction == -1)
+            else if (moveDirection >= 0 && arms.direction == -1)
             {
-                transform.localScale = new Vector3(-startingScale.x, startingScale.y, startingScale.z);
                 animator.Play(arms.animtaions.pull.name);
             }
-            return;
+        }
+        else if (arms.states.holding && !arms.animtaions.HasNull())
+        {
+            if (moveDirection != 0)
+                animator.Play(arms.animtaions.walkHolding.name);
+            else
+                animator.Play(arms.animtaions.idleHolding.name);
+        }
+        else if (walkAnim != null && idleAnim != null)
+        {
+            if (moveDirection != 0)
+            {
+                animator.Play(walkAnim.name);
+            }
+            else
+            {
+                animator.Play(idleAnim.name);
+            }
         }
 
         if (moveDirection > 0)
@@ -188,6 +205,12 @@ public class Player2Controller : OldPlayerController
 
         if (jumpThisFrame && (onGround || cyote))
         {
+            if (!arms.animtaions.HasNull() && arms.states.holding)
+                animator.Play(arms.animtaions.jumpHolding.name);
+            else if (jumpAnim != null)
+                animator.Play(jumpAnim.name);
+
+
             absoluteVector.y = jumpStrength;
 
             onGround = false;
