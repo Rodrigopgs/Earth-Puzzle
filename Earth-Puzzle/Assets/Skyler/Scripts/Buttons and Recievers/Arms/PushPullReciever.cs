@@ -98,8 +98,8 @@ public class PushPullReciever : Interactable
         }
 
     finish:
-        Collider2D[] r = Physics2D.OverlapBoxAll(transform.position + Vector3.right, Vector2.one * 0.5f, 0);
-        Collider2D[] l = Physics2D.OverlapBoxAll(transform.position + Vector3.right * -1, Vector2.one * 0.5f, 0);
+        Collider2D[] r = Physics2D.OverlapBoxAll(transform.position + (Vector3)Vector2.right, Vector2.one * 0.5f * transform.lossyScale, 0);
+        Collider2D[] l = Physics2D.OverlapBoxAll(transform.position + (Vector3)Vector2.left, Vector2.one * 0.5f * transform.lossyScale, 0);
 
         foreach (Collider2D c in r)
         {
@@ -111,6 +111,9 @@ public class PushPullReciever : Interactable
             else
                 playerOnSide = false;
         }
+
+        if (playerOnSide)
+            return;
 
         foreach (Collider2D c in l)
         {
