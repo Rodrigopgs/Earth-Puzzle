@@ -27,10 +27,10 @@ public class SlowFall : MonoBehaviour
             camsize.orthographicSize = 8;
             player.airGravity =0.2f;
             player.airMovementDivisor = 0.1f;
-            player.moveSpeed = 300;
+            player.moveSpeed = 400;
             player2.airGravity = 0.2f;
             player2.airMovementDivisor = 0.1f;
-            player2.moveSpeed = 300;
+            player2.moveSpeed = 400;
 
         }
     }
