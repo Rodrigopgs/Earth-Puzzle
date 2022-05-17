@@ -77,7 +77,7 @@ SpriteRenderer:
   m_Sprite: {fileID: 21300000, guid: 52bf9a80f76a24847b92eae258790aa9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 130.79
   m_PointLightOuterAngle: 130.79
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1.3717761
+  m_PointLightOuterRadius: 1.85
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
