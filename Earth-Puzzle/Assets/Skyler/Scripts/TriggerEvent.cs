@@ -16,6 +16,9 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.isTrigger)
+            return;
+
         if (requirePlayer || requireBothPlayers)
         {
             OldPlayerController c = collision.GetComponent<OldPlayerController>();
@@ -43,6 +46,9 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.isTrigger)
+            return;
+
         if (requireBothPlayers)
         {
             OldPlayerController c = collision.GetComponent<OldPlayerController>();

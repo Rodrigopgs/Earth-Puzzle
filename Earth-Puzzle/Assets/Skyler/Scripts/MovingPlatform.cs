@@ -66,6 +66,9 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.isTrigger)
+            return;
+
         OldPlayerController controller = collision.GetComponent<OldPlayerController>();
 
         if (controller != null)
@@ -74,6 +77,9 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.isTrigger)
+            return;
+
         OldPlayerController controller = collision.GetComponent<OldPlayerController>();
 
         if (controller != null && players.Contains(controller))
