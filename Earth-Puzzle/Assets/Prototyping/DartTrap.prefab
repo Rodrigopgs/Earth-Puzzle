@@ -102,7 +102,7 @@ MonoBehaviour:
   dartSpawnPoint: {fileID: 6162677964162976755}
   dartPrefab: {fileID: 3976315127521735361, guid: 4ea868571e7d4ef4597a655c20682276, type: 3}
   dartValues:
-    direction: 1
+    direction: 0
     speed: 8
     lifetime: 12
 --- !u!114 &6162677964108130484

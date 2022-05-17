@@ -220,8 +220,8 @@ MonoBehaviour:
   dragSpeedModifier: 0.5
   direction: 0
   attatch: 1
-  pickup: 1
-  throwPlayer: 1
+  pickup: 0
+  throwPlayer: 0
   animtaions:
     pull: {fileID: 7400000, guid: 0796609095f7f864aafa4ce56fc5454f, type: 2}
     push: {fileID: 7400000, guid: 4285fbba37c2e644fbd7179d17fcb8f9, type: 2}

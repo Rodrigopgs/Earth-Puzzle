@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00192ab2d28805442adf1dd1c7a8c11f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: {x: 6, y: 8}
+  throwForce: {x: 8, y: 12}
   height: 0.5
 --- !u!114 &4608325036956596682
 MonoBehaviour:

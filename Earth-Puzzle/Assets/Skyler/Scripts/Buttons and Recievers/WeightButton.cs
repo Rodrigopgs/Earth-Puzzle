@@ -88,6 +88,12 @@ public class WeightButton : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (triggered >= 1)
+            triggerEvents.Invoke();
+    }
+
     public enum WeightButtonType
     {
         Static,
