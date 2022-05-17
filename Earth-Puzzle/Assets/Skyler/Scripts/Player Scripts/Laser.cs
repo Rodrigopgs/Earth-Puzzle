@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+using static UnityEngine.ParticleSystem;
+
 [RequireComponent(typeof(LineRenderer))]
 public class Laser : MonoBehaviour
 {
     [SerializeField]
     private LaserBehavior laserType;
+
+    public GameObject[] particles;
+    public ParticleSystem[] particleSystems;
 
     public Vector2 startOffset;
     public LaserBehavior LaserType
@@ -13,16 +18,36 @@ public class Laser : MonoBehaviour
         get => laserType;
         set
         {
+            var p0 = particleSystems[0].main;
+            var p1 = particleSystems[1].main;
+            var p2 = particleSystems[2].main;
+            var p3 = particleSystems[3].main;
+
             switch (value)
             {
                 case LaserBehavior.Activation:
                     lineRenderer.colorGradient = laserColors[0];
+
+                    p0.startColor = laserColors[0];
+                    p1.startColor = laserColors[0];
+                    p2.startColor = laserColors[0];
+                    p3.startColor = laserColors[0];
                     break;
                 case LaserBehavior.Destruction:
                     lineRenderer.colorGradient = laserColors[1];
+
+                    p0.startColor = laserColors[1];
+                    p1.startColor = laserColors[1];
+                    p2.startColor = laserColors[1];
+                    p3.startColor = laserColors[1];
                     break;
                 case LaserBehavior.Stasis:
                     lineRenderer.colorGradient = laserColors[2];
+
+                    p0.startColor = laserColors[2];
+                    p1.startColor = laserColors[2];
+                    p2.startColor = laserColors[2];
+                    p3.startColor = laserColors[2];
                     break;
             }
             laserType = value;
@@ -58,16 +83,37 @@ public class Laser : MonoBehaviour
 
         lineRenderer.enabled = false;
 
+
+        var p0 = particleSystems[0].main;
+        var p1 = particleSystems[1].main;
+        var p2 = particleSystems[2].main;
+        var p3 = particleSystems[3].main;
+
         switch (laserType)
         {
             case LaserBehavior.Activation:
                 lineRenderer.colorGradient = laserColors[0];
+
+                p0.startColor = laserColors[0];
+                p1.startColor = laserColors[0];
+                p2.startColor = laserColors[0];
+                p3.startColor = laserColors[0];
                 break;
             case LaserBehavior.Destruction:
                 lineRenderer.colorGradient = laserColors[1];
+
+                p0.startColor = laserColors[1];
+                p1.startColor = laserColors[1];
+                p2.startColor = laserColors[1];
+                p3.startColor = laserColors[1];
                 break;
             case LaserBehavior.Stasis:
                 lineRenderer.colorGradient = laserColors[2];
+
+                p0.startColor = laserColors[2];
+                p1.startColor = laserColors[2];
+                p2.startColor = laserColors[2];
+                p3.startColor = laserColors[2];
                 break;
         }
     }
@@ -207,7 +253,7 @@ public class Laser : MonoBehaviour
 
     private void UpdateLine()
     {
-        Vector2 direction = (Camera.main.ScreenToWorldPoint(mousePos) - transform.position);
+        Vector2 direction = (Camera.main.ScreenToWorldPoint(mousePos) - (transform.position + (Vector3)startOffset));
         direction.Normalize();
         Vector2 hitPos;
 
@@ -244,6 +290,9 @@ public class Laser : MonoBehaviour
         }
 
         Vector3[] linePoss = new Vector3[] { new Vector3(transform.position.x, transform.position.y) + (Vector3)startOffset, new Vector3(hitPos.x, hitPos.y) };
+
+        particles[0].transform.position = new Vector3(transform.position.x, transform.position.y) + (Vector3)startOffset;
+        particles[1].transform.position = new Vector3(hitPos.x, hitPos.y);
 
         lineRenderer.SetPositions(linePoss);
     }
