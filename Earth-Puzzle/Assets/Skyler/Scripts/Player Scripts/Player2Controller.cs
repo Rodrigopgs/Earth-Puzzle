@@ -19,6 +19,8 @@ public class Player2Controller : OldPlayerController
 
     protected override void Awake()
     {
+        RespawnPosition = transform.position;
+
         movementActions = new TwoPlayerActions();
         player2Actions = movementActions.Player2;
         side = player2Actions.Movement;
@@ -51,8 +53,6 @@ public class Player2Controller : OldPlayerController
         startingScale = transform.localScale;
         arms = GetComponent<Arm>();
         animator = GetComponent<Animator>();
-
-        RespawnPosition = transform.position;
     }
 
     protected override void OnSide(InputAction.CallbackContext cb)
@@ -85,7 +85,7 @@ public class Player2Controller : OldPlayerController
             else
                 animator.Play(arms.animtaions.idleHolding.name);
         }
-        else
+        else if (walkAnim != null && idleAnim != null)
         {
             if (moveDirection != 0)
             {
@@ -207,7 +207,7 @@ public class Player2Controller : OldPlayerController
         {
             if (!arms.animtaions.HasNull() && arms.states.holding)
                 animator.Play(arms.animtaions.jumpHolding.name);
-            else
+            else if (jumpAnim != null)
                 animator.Play(jumpAnim.name);
 
 
