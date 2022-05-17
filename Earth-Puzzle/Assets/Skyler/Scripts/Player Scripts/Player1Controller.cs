@@ -9,7 +9,11 @@ public class Player1Controller : OldPlayerController
     InputAction jump;
     InputAction drop;
 
+    public AnimationClip walkAnim;
+    public AnimationClip idleAnim;
+
     public bool held;
+    Animator animator;
 
     protected override void Awake()
     {
@@ -37,12 +41,16 @@ public class Player1Controller : OldPlayerController
 
     protected override void Start()
     {
+        RespawnPosition = transform.position;
+
         rb2d = GetComponent<Rigidbody2D>();
 
         startingGravityScale = rb2d.gravityScale;
         drag = rb2d.drag;
 
         startingScale = transform.localScale;
+
+        animator = GetComponent<Animator>();
 
         RespawnPosition = transform.position;
     }
@@ -54,6 +62,18 @@ public class Player1Controller : OldPlayerController
         if (held)
             return;
 
+        if (walkAnim != null && idleAnim != null)
+        {
+            if (moveDirection != 0)
+            {
+                animator.Play(walkAnim.name);
+            }
+            else
+            {
+                animator.Play(idleAnim.name);
+            }
+        }
+
         if (moveDirection > 0)
             transform.localScale = new Vector3(startingScale.x, startingScale.y, startingScale.z);
         else
@@ -63,6 +83,11 @@ public class Player1Controller : OldPlayerController
     protected override void CancelSide(InputAction.CallbackContext cb)
     {
         moveDirection = 0f;
+
+        if (walkAnim != null && idleAnim != null)
+        {
+            animator.Play(idleAnim.name);
+        }
     }
     protected override void OnJump(InputAction.CallbackContext cb)
     {

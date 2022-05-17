@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using Unity.VisualScripting.Dependencies.Sqlite;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -56,9 +58,15 @@ public class Player2Interactions : MonoBehaviour
         if (arms.states.holding == true)
         {
             if (arms.holding != null)
+            {
                 arms.holding.Place();
+                arms.holding = null;
+            }
             if (arms.playerThrower != null)
+            {
                 arms.playerThrower.Throw();
+                arms.playerThrower = null;
+            }
             return;
         }
 

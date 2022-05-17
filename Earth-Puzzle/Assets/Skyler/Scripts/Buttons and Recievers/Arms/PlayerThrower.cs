@@ -8,6 +8,7 @@ public class PlayerThrower : Interactable
 {
 
     public Vector2 throwForce = new Vector2(2, 3);
+    public float height;
 
     Arm arm;
     Player1Controller controller;
@@ -30,7 +31,6 @@ public class PlayerThrower : Interactable
         else
         {
             arm = temp;
-            arm.playerThrower = this;
 
             Debug.Log("conditions true");
             return true;
@@ -39,20 +39,18 @@ public class PlayerThrower : Interactable
 
     public override void OnInteract(int playerNumber)
     {
-        Debug.Log("interact");
-        transform.position = arm.transform.position + arm.transform.up;
+        arm.playerThrower = this;
+        transform.position = arm.transform.position + arm.transform.up * height;
         transform.parent = arm.transform;
         arm.states.holding = true;
         rb2d.simulated = false;
         rb2d.isKinematic = true;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         controller.held = true;
-
     }
 
     public void Throw()
     {
-        Debug.Log("throw");
         transform.parent = null;
         arm.playerThrower = null;
         arm.states.holding = false;
@@ -61,5 +59,6 @@ public class PlayerThrower : Interactable
         rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         controller.outsideForce = new Vector2(throwForce.x * (arm.transform.localScale.x < 0 ? -1 : 1), throwForce.y);
         controller.held = false;
+        arm.playerThrower = null;
     }
 }

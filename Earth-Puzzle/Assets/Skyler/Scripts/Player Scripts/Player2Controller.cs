@@ -11,7 +11,6 @@ public class Player2Controller : OldPlayerController
     InputAction drop;
 
     public AnimationClip walkAnim;
-    public AnimationClip jumpAnim;
     public AnimationClip idleAnim;
 
     Arm arms;
@@ -53,6 +52,8 @@ public class Player2Controller : OldPlayerController
         startingScale = transform.localScale;
         arms = GetComponent<Arm>();
         animator = GetComponent<Animator>();
+
+        RespawnPosition = transform.position;
     }
 
     protected override void OnSide(InputAction.CallbackContext cb)
@@ -64,18 +65,22 @@ public class Player2Controller : OldPlayerController
             if (moveDirection <= 0 && arms.direction == 1)
             {
                 animator.Play(arms.animtaions.pull.name);
+                return;
             }
             else if (moveDirection >= 0 && arms.direction == 1)
             {
                 animator.Play(arms.animtaions.push.name);
+                return;
             }
             else if (moveDirection <= 0 && arms.direction == -1)
             {
                 animator.Play(arms.animtaions.push.name);
+                return;
             }
             else if (moveDirection >= 0 && arms.direction == -1)
             {
                 animator.Play(arms.animtaions.pull.name);
+                return;
             }
         }
         else if (arms.states.holding && !arms.animtaions.HasNull())
@@ -106,6 +111,16 @@ public class Player2Controller : OldPlayerController
     protected override void CancelSide(InputAction.CallbackContext cb)
     {
         moveDirection = 0f;
+
+        if (arms.states.holding && !arms.animtaions.HasNull())
+        {
+            animator.Play(arms.animtaions.idleHolding.name);
+        }
+        else if (walkAnim != null && idleAnim != null)
+        {
+            animator.Play(idleAnim.name);
+        }
+
     }
     protected override void OnJump(InputAction.CallbackContext cb)
     {
@@ -158,6 +173,19 @@ public class Player2Controller : OldPlayerController
                     rb2d.gravityScale = startingGravityScale;
 
                     rb2d.drag = drag;
+
+                    if (onGround && moveDirection == 0)
+                    {
+                        if (arms.states.holding && !arms.animtaions.HasNull())
+                        {
+                            animator.Play(arms.animtaions.idleHolding.name);
+                        }
+                        else if (walkAnim != null && idleAnim != null)
+                        {
+                            animator.Play(idleAnim.name);
+                        }
+                    }
+
                     return;
                 }
                 else
@@ -205,12 +233,6 @@ public class Player2Controller : OldPlayerController
 
         if (jumpThisFrame && (onGround || cyote))
         {
-            if (!arms.animtaions.HasNull() && arms.states.holding)
-                animator.Play(arms.animtaions.jumpHolding.name);
-            else if (jumpAnim != null)
-                animator.Play(jumpAnim.name);
-
-
             absoluteVector.y = jumpStrength;
 
             onGround = false;
@@ -222,9 +244,6 @@ public class Player2Controller : OldPlayerController
 
             rb2d.gravityScale = airGravity;
             rb2d.drag = airDrag;
-
-            if (arms.animtaions.jumpHolding != null)
-                animator.Play(arms.animtaions.jumpHolding.name);
         }
 
         if ((forceVector != Vector2.zero || jumpThisFrame || jumping || cyote) && incommingForce == Vector2.zero)

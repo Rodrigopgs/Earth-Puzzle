@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 556845176}
   - component: {fileID: 556845177}
   - component: {fileID: 5493943075746706864}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player 2
   m_TagString: Player2
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 8986082127967318066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.494, y: 0.51, z: 0}
-  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -2049032816, guid: 03a49ef03d1cdef4fbae4c5b7cb849c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,8 +127,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
+  m_Size: {x: 0.64, y: 0.575}
+  m_Direction: 1
 --- !u!58 &923282066417286280
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -144,7 +144,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.3
+  m_Radius: 0.65
 --- !u!114 &8986082127967318061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +170,8 @@ MonoBehaviour:
   airGravity: 3
   jumpQueueTime: 0.3
   cyoteTime: 0.12
+  walkAnim: {fileID: 7400000, guid: cd6f70276b3a54d42b8ad35c20e9c891, type: 2}
+  idleAnim: {fileID: 7400000, guid: 00e72e610d6e92743ac225833b8ecfa8, type: 2}
 --- !u!114 &5017278462490222282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +195,7 @@ Animator:
   m_GameObject: {fileID: 8986082127967318066}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2e5990e7c12ea1c419b15816f59ae9d8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -221,11 +223,11 @@ MonoBehaviour:
   pickup: 0
   throwPlayer: 0
   animtaions:
-    pull: {fileID: 0}
-    push: {fileID: 0}
-    walkHolding: {fileID: 0}
-    jumpHolding: {fileID: 0}
-    idleHolding: {fileID: 0}
+    pull: {fileID: 7400000, guid: 0796609095f7f864aafa4ce56fc5454f, type: 2}
+    push: {fileID: 7400000, guid: 4285fbba37c2e644fbd7179d17fcb8f9, type: 2}
+    walkHolding: {fileID: 7400000, guid: ba0759825c33ebb4b88cc1ca16bfb965, type: 2}
+    jumpHolding: {fileID: 7400000, guid: 24abcfe8e57bd85499786cd5c02597a9, type: 2}
+    idleHolding: {fileID: 7400000, guid: 6c90fd7bc85a7ab4795b6bace7353c12, type: 2}
   states:
     pushDirection: 0
     attatched: 0
