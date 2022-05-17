@@ -12,8 +12,8 @@ public abstract class Hazard : MonoBehaviour
     {
         if (!killAllPlayers)
         {
-            player.Kill(this);
             Killed.Add(player);
+            player.Kill(this);
             return;
         }
 
