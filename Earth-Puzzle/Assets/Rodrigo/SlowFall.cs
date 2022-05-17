@@ -7,6 +7,8 @@ public class SlowFall : MonoBehaviour
     public Player1Controller player;
     public Player2Controller player2;
     public MultiplayerCameraBounds camdistance;
+    public Camera camsize;
+    public SimpleGate floorgate;
 
    
     public GameObject floor;
@@ -19,11 +21,14 @@ public class SlowFall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (floor.transform.position.x != 14.5)
+        if (floorgate.Open == true)
         {
-            camdistance.minZoom = 8; 
-            player.airDrag = 5;
-            player2.airDrag = 5;
+            camdistance.minZoom = 8;
+            camsize.orthographicSize = 8;
+            player.airGravity =0.5f;
+            player.airMovementDivisor = 0.1f;
+            player2.airGravity = 0.5f;
+            player2.airMovementDivisor = 0.1f;
 
         }
     }
