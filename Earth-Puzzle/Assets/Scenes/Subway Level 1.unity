@@ -446,6 +446,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8986082127967318062, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8986082127967318066, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
       propertyPath: m_Name
       value: Player 2
@@ -1349,7 +1353,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 36.590496, y: -0.7576852}
+  m_Offset: {x: 36.590496, y: -3.493383}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1360,7 +1364,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1500626, y: 10.458247}
+  m_Size: {x: 1.1500626, y: 4.9868517}
   m_EdgeRadius: 0
 --- !u!61 &430692106
 BoxCollider2D:
@@ -1375,7 +1379,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 19.507687, y: -0.51254034}
+  m_Offset: {x: 19.507687, y: -3.3521538}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1386,7 +1390,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9902954, y: 11.010907}
+  m_Size: {x: 0.9902954, y: 5.3316803}
   m_EdgeRadius: 0
 --- !u!61 &430692107
 BoxCollider2D:
@@ -1713,7 +1717,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -4.570757}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1724,7 +1728,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.92403173}
   m_EdgeRadius: 0
 --- !u!1 &434253302
 GameObject:
@@ -2006,7 +2010,7 @@ GameObject:
   - component: {fileID: 524016983}
   - component: {fileID: 524016982}
   - component: {fileID: 524016981}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: level_subway_vending_machine_asset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2120,7 +2124,7 @@ GameObject:
   - component: {fileID: 559353812}
   - component: {fileID: 559353811}
   - component: {fileID: 559353810}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: level_subway_train_car_locomotive_asset (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2587,7 +2591,7 @@ GameObject:
   - component: {fileID: 766730612}
   - component: {fileID: 766730611}
   - component: {fileID: 766730610}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: level_subway_train_car_hanging_2_asset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2910,7 +2914,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3807103306366083258, guid: 75fc98456ed39a74f92ae007c282fc68, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3807103306366083258, guid: 75fc98456ed39a74f92ae007c282fc68, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3333,7 +3337,7 @@ GameObject:
   - component: {fileID: 943657693}
   - component: {fileID: 943657692}
   - component: {fileID: 943657691}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: level_subway_train_car_hanging_1_asset
   m_TagString: Interact
   m_Icon: {fileID: 0}
@@ -13194,7 +13198,7 @@ GameObject:
   - component: {fileID: 1751871442}
   - component: {fileID: 1751871441}
   - component: {fileID: 1751871443}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: level_subway_train_car_asset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13241,7 +13245,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 809d80ce2a794f341ad12b8f4e2737a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -13526,7 +13530,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3266512769e108446ade1b5c33b00678, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -13854,7 +13858,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: df5b47b4bb7454242ae2757ca377ec66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -14247,7 +14251,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.8747168, y: 0.41174722}
+  m_Offset: {x: 1.8747168, y: 0.6140619}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -14258,7 +14262,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25056648, y: 0.7318275}
+  m_Size: {x: 0.25056648, y: 0.32719815}
   m_EdgeRadius: 0
 --- !u!61 &1935047034
 BoxCollider2D:
