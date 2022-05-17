@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    public void Teleport(Vector3 position)
+    public void Teleport(Transform position)
     {
-        transform.transform.position = position;
+        transform.transform.position = position.position;
     }
 }
