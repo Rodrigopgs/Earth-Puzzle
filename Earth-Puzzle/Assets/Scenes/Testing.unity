@@ -261,6 +261,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
+--- !u!1 &53320834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8986082127967318066, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
+  m_PrefabInstance: {fileID: 53320833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &115769359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -756,17 +761,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8986082127967318057, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
   m_PrefabInstance: {fileID: 53320833}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &556845176 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 556845177, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
-  m_PrefabInstance: {fileID: 53320833}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b1e5133be1a65459f71f373833920a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &618866412
 GameObject:
   m_ObjectHideFlags: 0
@@ -2232,11 +2226,23 @@ PrefabInstance:
     - target: {fileID: 1570598203668576179, guid: 4b95b491b022bdc42848112eee2b0f97, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 556845176}
+      objectReference: {fileID: 53320834}
     - target: {fileID: 1570598203668576179, guid: 4b95b491b022bdc42848112eee2b0f97, type: 3}
       propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1371696125}
+    - target: {fileID: 1570598203668576179, guid: 4b95b491b022bdc42848112eee2b0f97, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570598203668576179, guid: 4b95b491b022bdc42848112eee2b0f97, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MultiplayerCameraBounds, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1570598203668576179, guid: 4b95b491b022bdc42848112eee2b0f97, type: 3}
+      propertyPath: triggerEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1570598203668576189, guid: 4b95b491b022bdc42848112eee2b0f97, type: 3}
       propertyPath: m_RootOrder
       value: 20

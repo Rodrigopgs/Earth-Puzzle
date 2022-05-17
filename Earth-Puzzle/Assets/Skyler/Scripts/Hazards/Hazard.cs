@@ -6,10 +6,26 @@ public abstract class Hazard : MonoBehaviour
 {
     public List<OldPlayerController> Killed { get; set; } = new List<OldPlayerController>();
 
+    public bool killAllPlayers;
+
     public virtual void Kill(OldPlayerController player)
     {
-        player.Kill(this);
-        Killed.Add(player);
+        if (!killAllPlayers)
+        {
+            player.Kill(this);
+            Killed.Add(player);
+            return;
+        }
+
+        OldPlayerController p1 = Player1Interactions.Instance.GetComponent<OldPlayerController>();
+        OldPlayerController p2 = Player2Interactions.Instance.GetComponent<OldPlayerController>();
+
+
+        Killed.Add(p1);
+        Killed.Add(p2);
+
+        p1.Kill(this);
+        p2.Kill(this);
     }
 
 }
