@@ -50,5 +50,4 @@ public class Train : MonoBehaviour
             rb2d.MovePosition(transform.position + (Vector3)Vector2.right * Time.deltaTime * moveSpeed);
         }
     }
-
 }
