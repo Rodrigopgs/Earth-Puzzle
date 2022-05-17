@@ -70,8 +70,8 @@ public class PushPullReciever : Interactable
 
     private void Update()
     {
-        Collider2D r = Physics2D.OverlapBox(transform.position + transform.right, Vector2.one * 0.5f, 0);
-        Collider2D l = Physics2D.OverlapBox(transform.position + transform.right * -1, Vector2.one * 0.5f, 0);
+        Collider2D r = Physics2D.OverlapBox(transform.position + Vector3.right, Vector2.one * 0.5f, 0);
+        Collider2D l = Physics2D.OverlapBox(transform.position + -Vector3.right, Vector2.one * 0.5f, 0);
 
         if ((r != null && r.CompareTag("Player2")) || (l != null && l.CompareTag("Player2")))
             playerOnSide = true;
