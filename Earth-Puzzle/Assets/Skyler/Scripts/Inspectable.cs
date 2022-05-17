@@ -42,7 +42,7 @@ public class Inspectable : Interactable
         tmp.fontSizeMin = maxFontSize;
         tmp.sortingOrder = 1;
         tmp.color = color;
-        tmp.sortingLayerID = sortingLayer;
+        tmp.sortingOrder = sortingLayer;
 
         tmp.text = text;
 
