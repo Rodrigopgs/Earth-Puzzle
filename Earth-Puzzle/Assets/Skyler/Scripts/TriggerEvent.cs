@@ -23,7 +23,7 @@ public class TriggerEvent : MonoBehaviour
         {
             OldPlayerController c = collision.GetComponent<OldPlayerController>();
 
-            if (collision != null)
+            if (c != null)
             {
                 if (requireBothPlayers)
                 {
@@ -52,7 +52,7 @@ public class TriggerEvent : MonoBehaviour
         if (requireBothPlayers)
         {
             OldPlayerController c = collision.GetComponent<OldPlayerController>();
-            if (collision != null)
+            if (c != null)
                 players--;
         }
     }
