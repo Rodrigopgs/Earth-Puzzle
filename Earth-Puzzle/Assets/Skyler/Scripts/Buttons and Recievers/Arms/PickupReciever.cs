@@ -27,7 +27,7 @@ public class PickupReciever : Interactable
         Pickup();
     }
 
-    public void Place()
+    public bool Place()
     {
         //RaycastHit2D hit = Physics2D.BoxCast(arm.transform.position + arm.transform.right, new Vector2(0.95f, 0.95f), 0, arm.transform.right);
 
@@ -36,21 +36,21 @@ public class PickupReciever : Interactable
         Collider2D[] hits = Physics2D.OverlapBoxAll(newPos, new Vector2(0.865f, 0.865f), 0);
         foreach (Collider2D hit in hits)
             if (!hit.isTrigger)
-                return;
+                return false;
 
         transform.position = newPos;
         gameObject.SetActive(true);
 
-        arm.holding = null;
         arm.states.holding = false;
         Destroy(arm.holdingPreview);
+        return true;
     }
 
     public void Pickup()
     {
+        arm.holding = this;
         gameObject.SetActive(false);
 
-        arm.holding = this;
         arm.states.holding = true;
         arm.holdingPreview = new GameObject();
 
@@ -64,6 +64,14 @@ public class PickupReciever : Interactable
 
         Player1Interactions.Instance.UpdateInteractables();
         Player2Interactions.Instance.UpdateInteractables();
+        StartCoroutine(SetValue());
+    }
+
+    private IEnumerator SetValue()
+    {
+        yield return null;
+        yield return new WaitForEndOfFrame();
+        arm.holding = this;
     }
 
     void Start()

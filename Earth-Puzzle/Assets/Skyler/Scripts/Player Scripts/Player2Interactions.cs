@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -57,13 +58,13 @@ public class Player2Interactions : MonoBehaviour
         {
             if (arms.holding != null)
             {
-                arms.holding.Place();
-                arms.holding = null;
+                if(arms.holding.Place())
+                StartCoroutine(NullValues(0));
             }
-            if (arms.playerThrower != null)
+            else if (arms.playerThrower != null)
             {
                 arms.playerThrower.Throw();
-                arms.playerThrower = null;
+                StartCoroutine(NullValues(1));
             }
             return;
         }
@@ -73,6 +74,16 @@ public class Player2Interactions : MonoBehaviour
 
         if (outlined != null)
             outlined.OnInteract(2);
+    }
+
+    private IEnumerator NullValues(int n)
+    {
+        yield return null;
+
+        if (n == 0)
+            arms.holding = null;
+        else
+            arms.playerThrower = null;
     }
 
     private void CancelInteract(InputAction.CallbackContext cb)

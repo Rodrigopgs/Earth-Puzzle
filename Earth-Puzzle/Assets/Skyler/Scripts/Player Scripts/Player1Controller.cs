@@ -41,14 +41,12 @@ public class Player1Controller : OldPlayerController
 
     protected override void Start()
     {
-        RespawnPosition = transform.position;
-
         rb2d = GetComponent<Rigidbody2D>();
 
         startingGravityScale = rb2d.gravityScale;
         drag = rb2d.drag;
 
-        startingScale = transform.localScale;
+        startingScale = new Vector3(Mathf.Abs(transform.localScale.x), Mathf.Abs(transform.localScale.y), Mathf.Abs(transform.localScale.z));  //transform.localScale;
 
         animator = GetComponent<Animator>();
 

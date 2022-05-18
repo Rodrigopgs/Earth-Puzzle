@@ -125,7 +125,7 @@
             ]
         },
         {
-            "name": "Player1",
+            "name": "Player2",
             "id": "b17a18c0-3898-4c56-b242-db85164777c9",
             "actions": [
                 {
@@ -255,7 +255,7 @@
             ]
         },
         {
-            "name": "Player2",
+            "name": "Player1",
             "id": "a79d6500-65a8-4d1e-b341-d51daa5f723f",
             "actions": [
                 {
@@ -310,7 +310,7 @@
                 {
                     "name": "negative",
                     "id": "78fa1c04-b715-436c-94ed-cbc7ddc11044",
-                    "path": "<Keyboard>/j",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -321,7 +321,7 @@
                 {
                     "name": "positive",
                     "id": "ea260023-ac7a-4d4f-b5c8-0058005c95b7",
-                    "path": "<Keyboard>/l",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -332,7 +332,7 @@
                 {
                     "name": "",
                     "id": "de99f595-5d01-4f01-9fec-28dd876d7fda",
-                    "path": "<Keyboard>/i",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -354,7 +354,7 @@
                 {
                     "name": "",
                     "id": "6b97472f-3dc4-4a8c-a9b3-aa5a2f87d45d",
-                    "path": "<Keyboard>/u",
+                    "path": "<Keyboard>/rightCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -454,17 +454,6 @@
                 },
                 {
                     "name": "",
-                    "id": "537220bc-8c4a-4f88-afc9-ce133eab466c",
-                    "path": "<Gamepad>/rightStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Player2",
-                    "action": "Mouse",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8e406d4d-44b3-4975-bf78-b7be67fbed56",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -476,19 +465,8 @@
                 },
                 {
                     "name": "",
-                    "id": "d704a1b6-81df-468e-93d6-fd4745ae8387",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Player2",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "413b738a-f293-44e4-8fa9-4d94e2a2c3f0",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
                     "groups": "Player1",

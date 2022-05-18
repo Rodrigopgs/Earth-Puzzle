@@ -21,6 +21,9 @@ public class SlowFall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player = (Player1Controller)Player1Interactions.Instance.GetComponent<OldPlayerController>();
+        player2 = (Player2Controller)Player2Interactions.Instance.GetComponent<OldPlayerController>();
+
         if (floorgate.Open == true)
         {
             camdistance.minZoom = 8;

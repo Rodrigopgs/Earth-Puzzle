@@ -70,7 +70,7 @@ public class ActivatedMovingPlatform : MonoBehaviour
         if (players.Count > 0)
             for (int i = 0; i < players.Count; i++)
             {
-                players[i].additiveForce = velocity;
+                players[i].additiveForce = velocity * 1.5f;
             }
 
         velocity = Vector2.zero;

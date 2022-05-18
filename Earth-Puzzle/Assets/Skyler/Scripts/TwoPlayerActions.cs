@@ -147,7 +147,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Player1"",
+            ""name"": ""Player2"",
             ""id"": ""b17a18c0-3898-4c56-b242-db85164777c9"",
             ""actions"": [
                 {
@@ -277,7 +277,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Player2"",
+            ""name"": ""Player1"",
             ""id"": ""a79d6500-65a8-4d1e-b341-d51daa5f723f"",
             ""actions"": [
                 {
@@ -332,7 +332,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""78fa1c04-b715-436c-94ed-cbc7ddc11044"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -343,7 +343,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""ea260023-ac7a-4d4f-b5c8-0058005c95b7"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -354,7 +354,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""de99f595-5d01-4f01-9fec-28dd876d7fda"",
-                    ""path"": ""<Keyboard>/i"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -376,7 +376,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6b97472f-3dc4-4a8c-a9b3-aa5a2f87d45d"",
-                    ""path"": ""<Keyboard>/u"",
+                    ""path"": ""<Keyboard>/rightCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -476,17 +476,6 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""537220bc-8c4a-4f88-afc9-ce133eab466c"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Player2"",
-                    ""action"": ""Mouse"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8e406d4d-44b3-4975-bf78-b7be67fbed56"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
@@ -498,19 +487,8 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d704a1b6-81df-468e-93d6-fd4745ae8387"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Player2"",
-                    ""action"": ""Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""413b738a-f293-44e4-8fa9-4d94e2a2c3f0"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player1"",
@@ -556,19 +534,19 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         m_Movement_Movement = m_Movement.FindAction("Movement", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Down = m_Movement.FindAction("Down", throwIfNotFound: true);
-        // Player1
-        m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
-        m_Player1_Movement = m_Player1.FindAction("Movement", throwIfNotFound: true);
-        m_Player1_Jump = m_Player1.FindAction("Jump", throwIfNotFound: true);
-        m_Player1_Down = m_Player1.FindAction("Down", throwIfNotFound: true);
-        m_Player1_Interact = m_Player1.FindAction("Interact", throwIfNotFound: true);
-        m_Player1_SwitchLaser = m_Player1.FindAction("SwitchLaser", throwIfNotFound: true);
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Movement = m_Player2.FindAction("Movement", throwIfNotFound: true);
         m_Player2_Jump = m_Player2.FindAction("Jump", throwIfNotFound: true);
         m_Player2_Down = m_Player2.FindAction("Down", throwIfNotFound: true);
         m_Player2_Interact = m_Player2.FindAction("Interact", throwIfNotFound: true);
+        m_Player2_SwitchLaser = m_Player2.FindAction("SwitchLaser", throwIfNotFound: true);
+        // Player1
+        m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
+        m_Player1_Movement = m_Player1.FindAction("Movement", throwIfNotFound: true);
+        m_Player1_Jump = m_Player1.FindAction("Jump", throwIfNotFound: true);
+        m_Player1_Down = m_Player1.FindAction("Down", throwIfNotFound: true);
+        m_Player1_Interact = m_Player1.FindAction("Interact", throwIfNotFound: true);
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Mouse = m_Mouse.FindAction("Mouse", throwIfNotFound: true);
@@ -679,71 +657,6 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
     }
     public MovementActions @Movement => new MovementActions(this);
 
-    // Player1
-    private readonly InputActionMap m_Player1;
-    private IPlayer1Actions m_Player1ActionsCallbackInterface;
-    private readonly InputAction m_Player1_Movement;
-    private readonly InputAction m_Player1_Jump;
-    private readonly InputAction m_Player1_Down;
-    private readonly InputAction m_Player1_Interact;
-    private readonly InputAction m_Player1_SwitchLaser;
-    public struct Player1Actions
-    {
-        private @TwoPlayerActions m_Wrapper;
-        public Player1Actions(@TwoPlayerActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Player1_Movement;
-        public InputAction @Jump => m_Wrapper.m_Player1_Jump;
-        public InputAction @Down => m_Wrapper.m_Player1_Down;
-        public InputAction @Interact => m_Wrapper.m_Player1_Interact;
-        public InputAction @SwitchLaser => m_Wrapper.m_Player1_SwitchLaser;
-        public InputActionMap Get() { return m_Wrapper.m_Player1; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(Player1Actions set) { return set.Get(); }
-        public void SetCallbacks(IPlayer1Actions instance)
-        {
-            if (m_Wrapper.m_Player1ActionsCallbackInterface != null)
-            {
-                @Movement.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
-                @Jump.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
-                @Down.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
-                @Down.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
-                @Down.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
-                @Interact.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
-                @SwitchLaser.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSwitchLaser;
-                @SwitchLaser.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSwitchLaser;
-                @SwitchLaser.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSwitchLaser;
-            }
-            m_Wrapper.m_Player1ActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Movement.started += instance.OnMovement;
-                @Movement.performed += instance.OnMovement;
-                @Movement.canceled += instance.OnMovement;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
-                @Down.started += instance.OnDown;
-                @Down.performed += instance.OnDown;
-                @Down.canceled += instance.OnDown;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-                @SwitchLaser.started += instance.OnSwitchLaser;
-                @SwitchLaser.performed += instance.OnSwitchLaser;
-                @SwitchLaser.canceled += instance.OnSwitchLaser;
-            }
-        }
-    }
-    public Player1Actions @Player1 => new Player1Actions(this);
-
     // Player2
     private readonly InputActionMap m_Player2;
     private IPlayer2Actions m_Player2ActionsCallbackInterface;
@@ -751,6 +664,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player2_Jump;
     private readonly InputAction m_Player2_Down;
     private readonly InputAction m_Player2_Interact;
+    private readonly InputAction m_Player2_SwitchLaser;
     public struct Player2Actions
     {
         private @TwoPlayerActions m_Wrapper;
@@ -759,6 +673,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player2_Jump;
         public InputAction @Down => m_Wrapper.m_Player2_Down;
         public InputAction @Interact => m_Wrapper.m_Player2_Interact;
+        public InputAction @SwitchLaser => m_Wrapper.m_Player2_SwitchLaser;
         public InputActionMap Get() { return m_Wrapper.m_Player2; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -780,8 +695,71 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnInteract;
+                @SwitchLaser.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnSwitchLaser;
+                @SwitchLaser.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnSwitchLaser;
+                @SwitchLaser.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnSwitchLaser;
             }
             m_Wrapper.m_Player2ActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+                @SwitchLaser.started += instance.OnSwitchLaser;
+                @SwitchLaser.performed += instance.OnSwitchLaser;
+                @SwitchLaser.canceled += instance.OnSwitchLaser;
+            }
+        }
+    }
+    public Player2Actions @Player2 => new Player2Actions(this);
+
+    // Player1
+    private readonly InputActionMap m_Player1;
+    private IPlayer1Actions m_Player1ActionsCallbackInterface;
+    private readonly InputAction m_Player1_Movement;
+    private readonly InputAction m_Player1_Jump;
+    private readonly InputAction m_Player1_Down;
+    private readonly InputAction m_Player1_Interact;
+    public struct Player1Actions
+    {
+        private @TwoPlayerActions m_Wrapper;
+        public Player1Actions(@TwoPlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Player1_Movement;
+        public InputAction @Jump => m_Wrapper.m_Player1_Jump;
+        public InputAction @Down => m_Wrapper.m_Player1_Down;
+        public InputAction @Interact => m_Wrapper.m_Player1_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_Player1; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Player1Actions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer1Actions instance)
+        {
+            if (m_Wrapper.m_Player1ActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
+                @Jump.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
+                @Down.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
+                @Down.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
+                @Down.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
+                @Interact.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_Player1ActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Movement.started += instance.OnMovement;
@@ -799,7 +777,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
             }
         }
     }
-    public Player2Actions @Player2 => new Player2Actions(this);
+    public Player1Actions @Player1 => new Player1Actions(this);
 
     // Mouse
     private readonly InputActionMap m_Mouse;
@@ -873,7 +851,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
     }
-    public interface IPlayer1Actions
+    public interface IPlayer2Actions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
@@ -881,7 +859,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnSwitchLaser(InputAction.CallbackContext context);
     }
-    public interface IPlayer2Actions
+    public interface IPlayer1Actions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
