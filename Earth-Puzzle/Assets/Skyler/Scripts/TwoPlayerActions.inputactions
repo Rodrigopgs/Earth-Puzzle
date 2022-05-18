@@ -125,7 +125,7 @@
             ]
         },
         {
-            "name": "Player2",
+            "name": "Player1",
             "id": "b17a18c0-3898-4c56-b242-db85164777c9",
             "actions": [
                 {
@@ -255,7 +255,7 @@
             ]
         },
         {
-            "name": "Player1",
+            "name": "Player2",
             "id": "a79d6500-65a8-4d1e-b341-d51daa5f723f",
             "actions": [
                 {
