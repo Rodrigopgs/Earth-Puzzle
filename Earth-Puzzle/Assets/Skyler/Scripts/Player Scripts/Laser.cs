@@ -76,11 +76,6 @@ public class Laser : MonoBehaviour
 
     private void Start()
     {
-        if (LaserTransfer.Instance == null)
-            new LaserTransfer(this);
-        else
-            LoadValues();
-
         lineRenderer.enabled = false;
 
 
@@ -116,9 +111,10 @@ public class Laser : MonoBehaviour
                 p3.startColor = laserColors[2];
                 break;
         }
+        GetComponent<PlayerInput>().ActivateInput();
     }
 
-    public void OnMouseChange(InputAction.CallbackContext cb) => mousePos = cb.ReadValue<Vector2>();
+    public void OnMouse(InputAction.CallbackContext cb) => mousePos = cb.ReadValue<Vector2>();
 
     private void ActiveLaser(RaycastHit2D rh2d)
     {
@@ -257,7 +253,7 @@ public class Laser : MonoBehaviour
         direction.Normalize();
         Vector2 hitPos;
 
-        RaycastHit2D rh2d = Physics2D.Raycast(transform.position + (Vector3)startOffset, direction, 50, ~(1 << LayerMask.NameToLayer("Ignore Laser")));
+        RaycastHit2D rh2d = Physics2D.Raycast(transform.position + (Vector3)startOffset, direction, 100, ~(1 << LayerMask.NameToLayer("Ignore Laser")));
         if (rh2d.collider != null)
         {
             hitPos = rh2d.point;
@@ -286,13 +282,13 @@ public class Laser : MonoBehaviour
         {
             ResetAll();
 
-            hitPos = (Vector2)transform.position + direction * 50;
+            hitPos = (Vector2)transform.position + direction * 100;
         }
 
-        Vector3[] linePoss = new Vector3[] { new Vector3(transform.position.x, transform.position.y) + (Vector3)startOffset, new Vector3(hitPos.x, hitPos.y) };
+        Vector3[] linePoss = new Vector3[] { transform.position + (Vector3)startOffset, (Vector3)hitPos };
 
-        particles[0].transform.position = new Vector3(transform.position.x, transform.position.y) + (Vector3)startOffset;
-        particles[1].transform.position = new Vector3(hitPos.x, hitPos.y);
+        particles[0].transform.position = transform.position + (Vector3)startOffset;
+        particles[1].transform.position = hitPos;
 
         lineRenderer.SetPositions(linePoss);
     }
@@ -321,24 +317,6 @@ public class Laser : MonoBehaviour
         Destruction,
         Stasis
     }
-
-    public void LoadValues()
-    {
-        LaserType = LaserTransfer.Instance.laserType;
-        laserColors = LaserTransfer.Instance.laserColors;
-
-        for (int i = 0; i < LaserTransfer.Instance.unlocked.Length; i++)
-        {
-            if (LaserTransfer.Instance.unlocked[i])
-                Unlock(i);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        new LaserTransfer(this);
-    }
-
 }
 
 [System.Serializable]

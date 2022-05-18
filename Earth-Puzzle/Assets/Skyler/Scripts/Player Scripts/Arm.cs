@@ -28,21 +28,6 @@ public class Arm : MonoBehaviour
     //player throw
     public PlayerThrower playerThrower;
 
-    private void Start()
-    {
-        if (ArmTransfer.Instance == null)
-            new ArmTransfer(this);
-        else
-            LoadValues();
-    }
-
-    private void LoadValues()
-    {
-        attatch = ArmTransfer.Instance.attatch;
-        pickup = ArmTransfer.Instance.pickup;
-        throwPlayer = ArmTransfer.Instance.throwPlayer;
-    }
-
     public void UnlockPickup() => pickup = true;
 
     public void UnlockThrowPlayer() => throwPlayer = true;
@@ -80,10 +65,5 @@ public class Arm : MonoBehaviour
             attatched = false;
             holding = false;
         }
-    }
-
-    private void OnDestroy()
-    {
-        new ArmTransfer(this);
     }
 }

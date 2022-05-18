@@ -1,3 +1,5 @@
+using System.Collections;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -212,6 +214,26 @@ public class Player1Controller : OldPlayerController
         }
         jumpThisFrame = false;
     }
+
+    public override void Kill(Hazard hazard)
+    {
+        onGround = true;
+        jumpThisFrame = false;
+        cyote = false;
+        groundLastUpdate = true;
+        jumping = false;
+
+        rb2d.drag = drag;
+        rb2d.gravityScale = startingGravityScale;
+
+        incommingForce = Vector2.zero;
+        addForce = Vector2.zero;
+
+        new Checkpoint.Respawner(this);
+        Destroy(gameObject);
+        hazard.Killed.Remove(this);
+    }
+
     protected override void OnDestroy()
     {
         side.performed -= OnSide;

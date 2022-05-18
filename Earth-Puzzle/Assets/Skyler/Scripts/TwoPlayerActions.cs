@@ -488,7 +488,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""413b738a-f293-44e4-8fa9-4d94e2a2c3f0"",
-                    ""path"": ""<Keyboard>/o"",
+                    ""path"": ""<Keyboard>/rightShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Player1"",

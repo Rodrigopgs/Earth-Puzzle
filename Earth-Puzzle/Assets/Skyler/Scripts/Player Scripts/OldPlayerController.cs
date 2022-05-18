@@ -69,7 +69,7 @@ public abstract class OldPlayerController : MonoBehaviour
     protected abstract void FixedUpdate();
     protected abstract void OnDestroy();
 
-    public void Kill(Hazard hazard)
+    public virtual void Kill(Hazard hazard)
     {
         onGround = true;
         jumpThisFrame = false;
