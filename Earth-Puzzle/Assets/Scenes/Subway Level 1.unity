@@ -1161,7 +1161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316866820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.99, y: 2.051, z: 0}
+  m_LocalPosition: {x: -8.763, y: 2.051, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2433,7 +2433,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  requirePlayer: 1
+  requirePlayer: 0
   aSynchronous: 1
   requireBothPlayers: 1
 --- !u!61 &556574018
@@ -2470,7 +2470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556574016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36, y: -3, z: 0}
+  m_LocalPosition: {x: 36, y: 0.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2693,6 +2693,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4925104302351039782, guid: e9f6cbe44541b494ca95031d6a0c78b2, type: 3}
+      propertyPath: objectsToTrack.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925104302351039782, guid: e9f6cbe44541b494ca95031d6a0c78b2, type: 3}
       propertyPath: objectsToTrack.Array.data[0]
       value: 
       objectReference: {fileID: 1492659158}
@@ -2700,6 +2704,10 @@ PrefabInstance:
       propertyPath: objectsToTrack.Array.data[1]
       value: 
       objectReference: {fileID: 2086824699}
+    - target: {fileID: 4925104302351039782, guid: e9f6cbe44541b494ca95031d6a0c78b2, type: 3}
+      propertyPath: objectsToTrack.Array.data[2]
+      value: 
+      objectReference: {fileID: 316866822}
     - target: {fileID: 4925104302351039782, guid: e9f6cbe44541b494ca95031d6a0c78b2, type: 3}
       propertyPath: corners.Array.data[1].topRight
       value: 
