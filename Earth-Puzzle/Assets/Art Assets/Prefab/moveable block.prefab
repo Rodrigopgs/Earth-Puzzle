@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 601232834804147461}
   - component: {fileID: 601232834804147460}
   - component: {fileID: 601232834804147466}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: moveable block
   m_TagString: Interact
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601232834804147456}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 41.86, y: -8.65, z: 10}
   m_LocalScale: {x: 1.1503, y: 1.1503, z: 1.1503}
   m_ConstrainProportionsScale: 0
@@ -122,7 +122,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601232834804147456}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -134,7 +134,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!114 &601232834804147460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 0}
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 255
   stuck: 0
+  raycastDistance: 0.085
 --- !u!114 &601232834804147466
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -125,7 +125,7 @@
             ]
         },
         {
-            "name": "Player1",
+            "name": "Player2",
             "id": "b17a18c0-3898-4c56-b242-db85164777c9",
             "actions": [
                 {
@@ -159,15 +159,6 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "d784632e-2afc-42e0-a795-565286635d20",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SwitchLaser",
-                    "type": "Button",
-                    "id": "ad2f9ee1-fd8c-4ebc-b68c-7ae6fe5ca789",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -210,8 +201,30 @@
                 },
                 {
                     "name": "",
+                    "id": "4cb187c9-7954-4eff-aba0-5461678517d0",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8682bf55-b8bf-4276-bef8-a812d1ff87a3",
                     "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb605b1d-41a4-4a6b-b686-8aec68fc2114",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -232,6 +245,17 @@
                 },
                 {
                     "name": "",
+                    "id": "ff806fb6-6a2a-44c9-af4f-05ae8601dcb7",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "73d0015a-1c41-4501-9bfd-3d9683b82a01",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -243,19 +267,19 @@
                 },
                 {
                     "name": "",
-                    "id": "8bd01885-452d-4034-963e-6fbb8b4cd590",
-                    "path": "<Mouse>/middleButton",
+                    "id": "eb40358f-433e-43c8-875a-c333be165d37",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Player1",
-                    "action": "SwitchLaser",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
             ]
         },
         {
-            "name": "Player2",
+            "name": "Player1",
             "id": "a79d6500-65a8-4d1e-b341-d51daa5f723f",
             "actions": [
                 {
@@ -359,50 +383,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ad20058c-5f63-4720-be52-d0c0a68f612e",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "49a341e5-328c-4a5a-a6a8-ebf161d69263",
-                    "path": "<Gamepad>/leftStick/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2e75ba24-d7a3-497b-bb05-9612f97a1fe0",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "61bb3348-3a7a-490c-b2bf-d32889bba1c2",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Down",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -147,7 +147,7 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Player1"",
+            ""name"": ""Player2"",
             ""id"": ""b17a18c0-3898-4c56-b242-db85164777c9"",
             ""actions"": [
                 {
@@ -181,15 +181,6 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""d784632e-2afc-42e0-a795-565286635d20"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SwitchLaser"",
-                    ""type"": ""Button"",
-                    ""id"": ""ad2f9ee1-fd8c-4ebc-b68c-7ae6fe5ca789"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -232,8 +223,30 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4cb187c9-7954-4eff-aba0-5461678517d0"",
+                    ""path"": ""<Gamepad>/leftStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""8682bf55-b8bf-4276-bef8-a812d1ff87a3"",
                     ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb605b1d-41a4-4a6b-b686-8aec68fc2114"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -254,6 +267,17 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ff806fb6-6a2a-44c9-af4f-05ae8601dcb7"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""73d0015a-1c41-4501-9bfd-3d9683b82a01"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
@@ -265,19 +289,19 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8bd01885-452d-4034-963e-6fbb8b4cd590"",
-                    ""path"": ""<Mouse>/middleButton"",
+                    ""id"": ""eb40358f-433e-43c8-875a-c333be165d37"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Player1"",
-                    ""action"": ""SwitchLaser"",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         },
         {
-            ""name"": ""Player2"",
+            ""name"": ""Player1"",
             ""id"": ""a79d6500-65a8-4d1e-b341-d51daa5f723f"",
             ""actions"": [
                 {
@@ -381,50 +405,6 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ad20058c-5f63-4720-be52-d0c0a68f612e"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""49a341e5-328c-4a5a-a6a8-ebf161d69263"",
-                    ""path"": ""<Gamepad>/leftStick/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2e75ba24-d7a3-497b-bb05-9612f97a1fe0"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""61bb3348-3a7a-490c-b2bf-d32889bba1c2"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Down"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -534,19 +514,18 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         m_Movement_Movement = m_Movement.FindAction("Movement", throwIfNotFound: true);
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_Down = m_Movement.FindAction("Down", throwIfNotFound: true);
-        // Player1
-        m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
-        m_Player1_Movement = m_Player1.FindAction("Movement", throwIfNotFound: true);
-        m_Player1_Jump = m_Player1.FindAction("Jump", throwIfNotFound: true);
-        m_Player1_Down = m_Player1.FindAction("Down", throwIfNotFound: true);
-        m_Player1_Interact = m_Player1.FindAction("Interact", throwIfNotFound: true);
-        m_Player1_SwitchLaser = m_Player1.FindAction("SwitchLaser", throwIfNotFound: true);
         // Player2
         m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
         m_Player2_Movement = m_Player2.FindAction("Movement", throwIfNotFound: true);
         m_Player2_Jump = m_Player2.FindAction("Jump", throwIfNotFound: true);
         m_Player2_Down = m_Player2.FindAction("Down", throwIfNotFound: true);
         m_Player2_Interact = m_Player2.FindAction("Interact", throwIfNotFound: true);
+        // Player1
+        m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
+        m_Player1_Movement = m_Player1.FindAction("Movement", throwIfNotFound: true);
+        m_Player1_Jump = m_Player1.FindAction("Jump", throwIfNotFound: true);
+        m_Player1_Down = m_Player1.FindAction("Down", throwIfNotFound: true);
+        m_Player1_Interact = m_Player1.FindAction("Interact", throwIfNotFound: true);
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Mouse = m_Mouse.FindAction("Mouse", throwIfNotFound: true);
@@ -657,71 +636,6 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
     }
     public MovementActions @Movement => new MovementActions(this);
 
-    // Player1
-    private readonly InputActionMap m_Player1;
-    private IPlayer1Actions m_Player1ActionsCallbackInterface;
-    private readonly InputAction m_Player1_Movement;
-    private readonly InputAction m_Player1_Jump;
-    private readonly InputAction m_Player1_Down;
-    private readonly InputAction m_Player1_Interact;
-    private readonly InputAction m_Player1_SwitchLaser;
-    public struct Player1Actions
-    {
-        private @TwoPlayerActions m_Wrapper;
-        public Player1Actions(@TwoPlayerActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Player1_Movement;
-        public InputAction @Jump => m_Wrapper.m_Player1_Jump;
-        public InputAction @Down => m_Wrapper.m_Player1_Down;
-        public InputAction @Interact => m_Wrapper.m_Player1_Interact;
-        public InputAction @SwitchLaser => m_Wrapper.m_Player1_SwitchLaser;
-        public InputActionMap Get() { return m_Wrapper.m_Player1; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(Player1Actions set) { return set.Get(); }
-        public void SetCallbacks(IPlayer1Actions instance)
-        {
-            if (m_Wrapper.m_Player1ActionsCallbackInterface != null)
-            {
-                @Movement.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
-                @Jump.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
-                @Down.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
-                @Down.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
-                @Down.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
-                @Interact.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
-                @SwitchLaser.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSwitchLaser;
-                @SwitchLaser.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSwitchLaser;
-                @SwitchLaser.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSwitchLaser;
-            }
-            m_Wrapper.m_Player1ActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Movement.started += instance.OnMovement;
-                @Movement.performed += instance.OnMovement;
-                @Movement.canceled += instance.OnMovement;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
-                @Down.started += instance.OnDown;
-                @Down.performed += instance.OnDown;
-                @Down.canceled += instance.OnDown;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
-                @SwitchLaser.started += instance.OnSwitchLaser;
-                @SwitchLaser.performed += instance.OnSwitchLaser;
-                @SwitchLaser.canceled += instance.OnSwitchLaser;
-            }
-        }
-    }
-    public Player1Actions @Player1 => new Player1Actions(this);
-
     // Player2
     private readonly InputActionMap m_Player2;
     private IPlayer2Actions m_Player2ActionsCallbackInterface;
@@ -778,6 +692,63 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         }
     }
     public Player2Actions @Player2 => new Player2Actions(this);
+
+    // Player1
+    private readonly InputActionMap m_Player1;
+    private IPlayer1Actions m_Player1ActionsCallbackInterface;
+    private readonly InputAction m_Player1_Movement;
+    private readonly InputAction m_Player1_Jump;
+    private readonly InputAction m_Player1_Down;
+    private readonly InputAction m_Player1_Interact;
+    public struct Player1Actions
+    {
+        private @TwoPlayerActions m_Wrapper;
+        public Player1Actions(@TwoPlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Player1_Movement;
+        public InputAction @Jump => m_Wrapper.m_Player1_Jump;
+        public InputAction @Down => m_Wrapper.m_Player1_Down;
+        public InputAction @Interact => m_Wrapper.m_Player1_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_Player1; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Player1Actions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer1Actions instance)
+        {
+            if (m_Wrapper.m_Player1ActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnMovement;
+                @Jump.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnJump;
+                @Down.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
+                @Down.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
+                @Down.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnDown;
+                @Interact.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_Player1ActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Down.started += instance.OnDown;
+                @Down.performed += instance.OnDown;
+                @Down.canceled += instance.OnDown;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public Player1Actions @Player1 => new Player1Actions(this);
 
     // Mouse
     private readonly InputActionMap m_Mouse;
@@ -851,15 +822,14 @@ public partial class @TwoPlayerActions : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
     }
-    public interface IPlayer1Actions
+    public interface IPlayer2Actions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnSwitchLaser(InputAction.CallbackContext context);
     }
-    public interface IPlayer2Actions
+    public interface IPlayer1Actions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
