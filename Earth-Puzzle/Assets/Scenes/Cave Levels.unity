@@ -35641,11 +35641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986082127967318057, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.0680985
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8986082127967318057, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.639494
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 8986082127967318057, guid: 46b07a71061c9a74fb826c0500a13ce3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -42362,7 +42362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e1cf95a48104249b3074fa2b7412bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  region: 0
+  region: 2
   zoomStrength: 10
   minZoom: 4
   maxZoom: 15
@@ -42601,33 +42601,21 @@ MonoBehaviour:
   triggerEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1209566128}
+        m_TargetAssemblyTypeName: MultiplayerCameraBounds, Assembly-CSharp
+        m_MethodName: set_Region
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  requirePlayer: 0
-  aSynchronous: 0
-  requireBothPlayers: 0
+  requirePlayer: 1
+  aSynchronous: 1
+  requireBothPlayers: 1
 --- !u!1 &1234038380 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6917936695457671278, guid: 9d5116c9194264c4ebf41e74080c4aa2, type: 3}
@@ -51489,11 +51477,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3807103306366083259, guid: 75fc98456ed39a74f92ae007c282fc68, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.76
+      value: 0.30809832
       objectReference: {fileID: 0}
     - target: {fileID: 3807103306366083259, guid: 75fc98456ed39a74f92ae007c282fc68, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.08
+      value: -23.559494
       objectReference: {fileID: 0}
     - target: {fileID: 3807103306366083259, guid: 75fc98456ed39a74f92ae007c282fc68, type: 3}
       propertyPath: m_LocalPosition.z

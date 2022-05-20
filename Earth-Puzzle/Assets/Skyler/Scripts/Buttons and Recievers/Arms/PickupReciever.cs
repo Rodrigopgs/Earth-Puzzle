@@ -64,14 +64,6 @@ public class PickupReciever : Interactable
 
         Player1Interactions.Instance.UpdateInteractables();
         Player2Interactions.Instance.UpdateInteractables();
-        StartCoroutine(SetValue());
-    }
-
-    private IEnumerator SetValue()
-    {
-        yield return null;
-        yield return new WaitForEndOfFrame();
-        arm.holding = this;
     }
 
     void Start()
